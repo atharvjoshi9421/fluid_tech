@@ -1,256 +1,777 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Products & Services — Flow Meters, Fuel Dispensers, Oil Filling | Fluid Tech</title>
-  <meta name="description" content="Explore Fluid Tech's full range: flow meters, positive displacement meters, fuel dispensers, oil filling machines, decanter centrifuges and fuel consumption monitors." />
-  <link rel="icon" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fluid-Tech Products – Pumps, Valves, Flow Meters, Pressure Transmitters, Level Instruments, PLC Automation. Authorised dealers in Pune." />
+  <title>Products &amp; Services | Fluid-Tech Pune</title>
+  <link rel="icon" type="image/webp" href="images/logo.webp" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style1.css" />
 </head>
 <body>
-  
-    <!-- ============ NAVBAR ============ -->
-  <nav class="ft-navbar navbar navbar-expand-lg">
+
+  <!-- <div id="page-loader">
+    <div class="loader-logo"><img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech" /></div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div> -->
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html"><img src="fluid_tech_logo-removebg-preview.png" alt="Fluid Tech logo" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftNav"><i class="fa-solid fa-bars fa-lg" style="color: var(--ft-primary);"></i></button>
-      <div class="collapse navbar-collapse" id="ftNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-         <li class="nav-item dropdown position-static">
-  <a class="nav-link dropdown-toggle" href="product.html" data-bs-toggle="dropdown">Products &amp; Services</a>
-  <div class="dropdown-menu ft-mega-menu p-4">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Flow Meter</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Liquid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker loading Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Chemical P.D. Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Acid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Digital Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Industrial Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Flow Measurement Systems</a></li>
-            <li><a class="dropdown-item px-0" href="#">Oscillating Piston Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">P.d. Flow Transmitter</a></li>
-            <li><a class="dropdown-item px-0" href="#">AD Blue Flow Meter</a></li>
-          </ul>
+      <a class="navbar-brand" href="index1.html">
+        <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+        <div class="brand-text">
+          <span class="brand-name">Fluid-Tech</span>
+          <span class="brand-tagline">Process &amp; Automation</span>
         </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Oil Filling Machine</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Dual Channel Oil Filling Machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Single channel oil filling machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Brake Oil Filling Machine</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Decanter Centrifuge</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Tanker Decantation system</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker Unloading System</a></li>
-            <li><a class="dropdown-item px-0" href="#">Fuel and Solvents Unloading System</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Mobile Fuel Dispenser</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Mobile Fuel Dispenser</a></li>
-            <li><a class="dropdown-item px-0" href="#">4 nozzle dispensing system</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Dispenser</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Fuel Dispenser stationary unit</a></li>
-            <li><a class="dropdown-item px-0" href="#">Diesel Dispenser Machines</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Positive Displacement Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pd Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pharma PD Flow Meter</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Fluid Tech FT2300 25 Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Dm Water Flow Meter</a></li>
-          </ul>
-          
-          <div class="mt-3">
-            <a href="product.html" class="text-decoration-none fw-bold" style="color: var(--ft-primary);">View all categories &rarr;</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</li>
-          <li class="nav-item"><a class="nav-link" href="photo_gallery.html">Photo</a></li>
-          <li class="nav-item"><a class="nav-link" href="video_gallery.html">Video</a></li>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav gap-1 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index1.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about1.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link active" href="product1.html">Products &amp; Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Photo Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="video-gallery.html">Videos</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-ft-primary" href="enquiry.html">Enquiry</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry.html">Get Enquiry</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="page-header">
-    <div class="container">
-      <h1>Products &amp; Services</h1>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mt-2 mb-0">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Products &amp; Services</li>
-        </ol>
-      </nav>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-gradient"></div>
+    <div class="container page-hero-content">
+      <ul class="breadcrumb-custom">
+        <li><a href="index1.html">Home</a></li>
+        <li class="active">Products &amp; Services</li>
+      </ul>
+      <h1>Products &amp; <span class="text-accent">Services</span></h1>
+      <p>A comprehensive range of industrial fluid handling, process instrumentation and automation solutions from globally trusted brands.</p>
     </div>
-  </header>
-  <!-- Category quick-nav -->
-  <section class="py-4 bg-soft">
+  </section>
+
+  <!-- FILTER TABS -->
+  <section class="section-pad-sm section-dark" style="padding-bottom:20px;">
     <div class="container">
-      <div class="d-flex flex-wrap gap-2 justify-content-center">
-        <a href="#flow-meter" class="btn btn-outline-primary btn-sm rounded-pill">Flow Meter</a>
-        <a href="#pd-flow-meter" class="btn btn-outline-primary btn-sm rounded-pill">PD Flow Meter</a>
-        <a href="#fuel-flow" class="btn btn-outline-primary btn-sm rounded-pill">Fuel Flow Meter</a>
-        <a href="#fuel-dispenser" class="btn btn-outline-primary btn-sm rounded-pill">Fuel Dispenser</a>
-        <a href="#mobile-fuel-dispenser" class="btn btn-outline-primary btn-sm rounded-pill">Mobile Dispenser</a>
-        <a href="#oil-filling" class="btn btn-outline-primary btn-sm rounded-pill">Oil Filling</a>
-        <a href="#decanter" class="btn btn-outline-primary btn-sm rounded-pill">Decanter Centrifuge</a>
-        <a href="#fuel-monitor" class="btn btn-outline-primary btn-sm rounded-pill">Fuel Monitor</a>
+      <div class="product-filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Products</button>
+        <button class="filter-tab" data-filter="pumps">Pumps</button>
+        <button class="filter-tab" data-filter="valves">Valves</button>
+        <button class="filter-tab" data-filter="instruments">Instruments</button>
+        <button class="filter-tab" data-filter="automation">Automation</button>
+        <button class="filter-tab" data-filter="services">Services</button>
       </div>
     </div>
   </section>
-  <div class="container">
-    <!-- 1. Flow Meter -->
-    <section id="flow-meter" class="category-section">
-      <div class="row align-items-end mb-4 reveal">
-        <div class="col-md-8"><div class="category-icon"><i class="fa-solid fa-gauge-high"></i></div>
-          <h2 class="section-title mb-1">Flow Meter</h2>
-          <p class="text-muted-2 mb-0">High-accuracy liquid flow meters for industrial dosing, transfer and process monitoring across chemicals, acids and utilities.</p>
+
+  <!-- ═══════════════════════════
+       PUMPS SECTION
+  ═══════════════════════════ -->
+  <section class="section-pad section-dark" id="pumps" style="padding-top:40px;">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Fluid Handling</div>
+        <h2 class="section-title"><i class="fa-solid fa-droplet text-accent me-2"></i>Pump Systems</h2>
+        <div class="divider-brand"></div>
+        <p class="section-subtitle">Complete range of industrial pumps for water, chemicals, viscous fluids, and high-pressure applications.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Centrifugal Pump -->
+        <div class="col-sm-6 col-lg-4 reveal delay-1" data-item>
+          <div class="product-card" data-category="pumps">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70" alt="Centrifugal Pump" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pumps</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Centrifugal Pumps</h4>
+              <p>Single and multi-stage centrifugal pumps in SS/CI/Bronze construction for water, chemicals and process fluids. Available in end-suction, inline, and split-casing configurations.</p>
+              <div class="product-specs">
+                <span class="spec-tag">0.5–500 HP</span>
+                <span class="spec-tag">API 610</span>
+                <span class="spec-tag">ANSI/DIN</span>
+                <span class="spec-tag">SS316L</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details" title="Details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gear Pump -->
+        <div class="col-sm-6 col-lg-4 reveal delay-2" data-item>
+          <div class="product-card" data-category="pumps">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563455765-9b2de95a7e0c?w=600&q=70" alt="Gear Pump" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pumps</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Gear Pumps</h4>
+              <p>Positive displacement gear pumps for viscous fluids including oils, resins, adhesives and molasses. Ideal for metering and dosing applications requiring consistent flow.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Viscosity up to 1M cP</span>
+                <span class="spec-tag">CI / SS / Bronze</span>
+                <span class="spec-tag">Relief Valve</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diaphragm Pump -->
+        <div class="col-sm-6 col-lg-4 reveal delay-3" data-item>
+          <div class="product-card" data-category="pumps">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&q=70" alt="Diaphragm Pump" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pumps</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Air-Operated Diaphragm Pumps</h4>
+              <p>AODD pumps in PP, PVDF, SS316L construction for aggressive chemicals, slurries and shear-sensitive fluids. Self-priming, dry-run safe design.</p>
+              <div class="product-specs">
+                <span class="spec-tag">PTFE Diaphragm</span>
+                <span class="spec-tag">Self-Priming</span>
+                <span class="spec-tag">Dry-Run Safe</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submersible Pump -->
+        <div class="col-sm-6 col-lg-4 reveal delay-1" data-item>
+          <div class="product-card" data-category="pumps">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1565008576549-57569a49a85a?w=600&q=70" alt="Submersible Pump" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pumps</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Submersible Pumps</h4>
+              <p>Heavy-duty submersible pumps for wastewater, sewage, drainage and dewatering. Available in cast iron and SS with wide flow and head ranges.</p>
+              <div class="product-specs">
+                <span class="spec-tag">IP68 Protection</span>
+                <span class="spec-tag">0.5–50 HP</span>
+                <span class="spec-tag">Macerator Options</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metering Dosing Pump -->
+        <div class="col-sm-6 col-lg-4 reveal delay-2" data-item>
+          <div class="product-card" data-category="pumps">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1612235253836-a7d714bc0e72?w=600&q=70" alt="Dosing Pump" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pumps</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Chemical Dosing Pumps</h4>
+              <p>Electronic metering pumps with digital control for precise chemical dosing in water treatment, ETP and process applications. 4–20 mA and pulse control.</p>
+              <div class="product-specs">
+                <span class="spec-tag">±1% Accuracy</span>
+                <span class="spec-tag">4-20mA/Pulse</span>
+                <span class="spec-tag">PVDF / PP Head</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peristaltic Pump -->
+        <div class="col-sm-6 col-lg-4 reveal delay-3" data-item>
+          <div class="product-card" data-category="pumps">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70" alt="Peristaltic Pump" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pumps</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Peristaltic Pumps</h4>
+              <p>Hose/tube pumps for abrasive slurries, food-grade applications and high-solid-content fluids. Zero contamination design, fully reversible.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Sanitary Design</span>
+                <span class="spec-tag">EPDM / Silicone</span>
+                <span class="spec-tag">Reversible</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-droplet"></i></div><div class="body"><h5>Liquid Flow Meter</h5><p>Versatile liquid flow meter for water and general industrial fluids.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-truck-droplet"></i></div><div class="body"><h5>Tanker Loading Flow Meter</h5><p>Rugged meter for tanker filling stations and bulk fluid loading.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-flask-vial"></i></div><div class="body"><h5>Chemical PD Flow Meter</h5><p>Positive-displacement meter engineered for aggressive chemicals.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-vial-virus"></i></div><div class="body"><h5>Acid Flow Meter</h5><p>Corrosion-resistant flow meter for sulphuric, hydrochloric &amp; nitric acids.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-microchip"></i></div><div class="body"><h5>Digital Flow Meter</h5><p>Digital display with totalizer and pulse output for control systems.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 2. PD Flow Meter -->
-    <section id="pd-flow-meter" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-arrows-spin"></i></div>
-        <h2 class="section-title mb-1">Positive Displacement Flow Meter</h2>
-        <p class="text-muted-2 mb-0">PD flow meters offer exceptional accuracy for viscous and clean fluids — ideal for pharma, chemical batching and custody transfer.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-gauge"></i></div><div class="body"><h5>Positive Displacement Flow Meter</h5><p>Standard PD meter for accurate volumetric measurement.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-circle-nodes"></i></div><div class="body"><h5>PD Flow Meter</h5><p>Industrial-grade PD meter with high repeatability across viscosities.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-pills"></i></div><div class="body"><h5>Pharma PD Flow Meter</h5><p>Hygienic PD flow meter for pharmaceutical batching applications.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 3. Fuel Flow Meter -->
-    <section id="fuel-flow" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-gas-pump"></i></div>
-        <h2 class="section-title mb-1">Fuel Flow Meter</h2>
-        <p class="text-muted-2 mb-0">Purpose-built fuel measurement — including the Fluid Tech FT2300 PD meter and DM water flow meter for utilities.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-fire-flame-curved"></i></div><div class="body"><h5>Fluid Tech FT2300 PD Flow Meter</h5><p>Compact 25mm positive-displacement fuel flow meter with high accuracy.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-droplet"></i></div><div class="body"><h5>DM Water Flow Meter</h5><p>Flow meter for demineralised water lines in process &amp; power plants.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 4. Fuel Dispenser -->
-    <section id="fuel-dispenser" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-gas-pump"></i></div>
-        <h2 class="section-title mb-1">Fuel Dispenser</h2>
-        <p class="text-muted-2 mb-0">Stationary diesel and fuel dispensing units engineered for fleet refuelling and on-site fuel storage points.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-square-parking"></i></div><div class="body"><h5>Fuel Dispenser Stationary Unit</h5><p>Wall- or pedestal-mounted dispenser with pump, meter and nozzle.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-gauge-simple-high"></i></div><div class="body"><h5>Diesel Dispenser Machines</h5><p>Heavy-duty diesel dispensers for industrial fleets &amp; storage yards.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 5. Mobile Fuel Dispenser -->
-    <section id="mobile-fuel-dispenser" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-truck-fast"></i></div>
-        <h2 class="section-title mb-1">Mobile Fuel Dispenser</h2>
-        <p class="text-muted-2 mb-0">Skid-mounted and multi-nozzle dispensing systems for refuelling at remote sites, mines and construction projects.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-truck-pickup"></i></div><div class="body"><h5>Mobile Fuel Dispenser</h5><p>Compact mobile dispenser with integrated pump and meter.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-grip"></i></div><div class="body"><h5>4-Nozzle Dispensing System</h5><p>Four-nozzle skid for simultaneous multi-vehicle refuelling.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 6. Oil Filling Machine -->
-    <section id="oil-filling" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-oil-can"></i></div>
-        <h2 class="section-title mb-1">Oil Filling Machine</h2>
-        <p class="text-muted-2 mb-0">Single &amp; dual-channel oil filling machines for engine oil, brake oil and other automotive fluids on production lines.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-layer-group"></i></div><div class="body"><h5>Dual Channel Oil Filling Machine</h5><p>Two-channel filling for high-throughput automotive lines.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-bottle-droplet"></i></div><div class="body"><h5>Single Channel Oil Filling Machine</h5><p>Single-line oil filling unit with precise volumetric control.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-car-burst"></i></div><div class="body"><h5>Brake Oil Filling Machine</h5><p>Dedicated brake-oil filling unit for vehicle assembly stations.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 7. Decanter -->
-    <section id="decanter" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-arrows-spin"></i></div>
-        <h2 class="section-title mb-1">Decanter Centrifuge</h2>
-        <p class="text-muted-2 mb-0">Tanker decantation, unloading and fuel/solvent transfer systems for safe and efficient bulk handling.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-truck-droplet"></i></div><div class="body"><h5>Tanker Decantation System</h5><p>Complete system for decanting product from road tankers.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-warehouse"></i></div><div class="body"><h5>Tanker Unloading System</h5><p>Pump &amp; meter skid for controlled, metered tanker offloading.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 col-lg-4 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-fire"></i></div><div class="body"><h5>Fuel &amp; Solvents Unloading System</h5><p>Safe transfer of fuels and solvents with explosion-rated components.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-    <!-- 8. Fuel Monitor -->
-    <section id="fuel-monitor" class="category-section">
-      <div class="mb-4 reveal"><div class="category-icon"><i class="fa-solid fa-chart-line"></i></div>
-        <h2 class="section-title mb-1">Fuel Consumption Monitor</h2>
-        <p class="text-muted-2 mb-0">Real-time fuel-consumption monitoring for diesel generators and equipment — transparent data for cost control.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-bolt"></i></div><div class="body"><h5>DG Fuel Consumption Monitor</h5><p>Diesel-generator fuel monitoring with totalizer &amp; output.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-        <div class="col-md-6 reveal"><div class="product-card"><div class="thumb"><i class="fa-solid fa-display"></i></div><div class="body"><h5>Fluid Tech FT2304 Monitor</h5><p>Branded monitoring unit with display, alarms &amp; data output.</p><a class="btn-link-ft" href="enquiry.html">Enquire <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      </div>
-    </section>
-  </div>
-  <section class="section-sm mt-5" style="background: linear-gradient(135deg, var(--ft-primary), var(--ft-accent)); color:#fff;">
-    <div class="container text-center reveal">
-      <h3 class="mb-3">Need a custom configuration?</h3>
-      <p class="mb-4" style="opacity:.9;">Share your fluid, flow range and connection size — we&rsquo;ll spec the right unit for you.</p>
-      <a href="enquiry.html" class="btn btn-light px-4 py-2 fw-semibold rounded-pill"><i class="fa-solid fa-paper-plane me-2"></i>Send Enquiry</a>
     </div>
   </section>
-  <footer class="ft-footer">
+
+  <!-- ═══════════════════════════
+       VALVES SECTION
+  ═══════════════════════════ -->
+  <section class="section-pad section-dark-2" id="valves">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4"><div class="brand"><img src="images/logo.png" alt="Fluid Tech"><span>FluidTech</span></div><p>Industrial flow meters, fuel dispensing &amp; process automation engineered in Pune.</p><div class="socials mt-3"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
-        <div class="col-6 col-lg-2"><h6>Company</h6><ul><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="photo-gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div class="col-6 col-lg-3"><h6>Products</h6><ul><li><a href="products.html#flow-meter">Flow Meter</a></li><li><a href="products.html#fuel-dispenser">Fuel Dispenser</a></li><li><a href="products.html#oil-filling">Oil Filling Machine</a></li><li><a href="products.html#decanter">Decanter Centrifuge</a></li></ul></div>
-        <div class="col-lg-3"><h6>Get in touch</h6><ul><li><i class="fa-solid fa-location-dot me-2"></i>Shivane, Pune, Maharashtra</li><li><i class="fa-solid fa-phone me-2"></i><a href="tel:+910000000000">+91 00000 00000</a></li><li><i class="fa-solid fa-envelope me-2"></i><a href="mailto:info@fluidtech.example">info@fluidtech.example</a></li><li><i class="fa-brands fa-whatsapp me-2"></i><a href="https://wa.me/910000000000">WhatsApp chat</a></li></ul></div>
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Flow Control</div>
+        <h2 class="section-title"><i class="fa-solid fa-sliders text-accent me-2"></i>Valves &amp; Actuation</h2>
+        <div class="divider-brand"></div>
+        <p class="section-subtitle">Industrial-grade valves for isolation, control, regulation and safety applications across all process industries.</p>
       </div>
-      <div class="copy text-center">&copy; <span id="yr"></span> Fluid Tech. All rights reserved. <script>document.getElementById('yr').textContent=new Date().getFullYear();</script></div>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-4 reveal delay-1" data-item>
+          <div class="product-card" data-category="valves">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1611267254323-4db7b39c732c?w=600&q=70" alt="Ball Valve" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Valves</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Ball Valves</h4>
+              <p>Full bore and reduced bore ball valves in SS316, WCB, Bronze for on/off control of liquids and gases. Available with manual, pneumatic and electric actuators.</p>
+              <div class="product-specs">
+                <span class="spec-tag">DN15–DN600</span>
+                <span class="spec-tag">Class 150–1500</span>
+                <span class="spec-tag">PTFE / Metal Seat</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-2" data-item>
+          <div class="product-card" data-category="valves">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1565108520693-c4ebc04cefed?w=600&q=70" alt="Butterfly Valve" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Valves</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Butterfly Valves</h4>
+              <p>Wafer, lug and double-flanged butterfly valves with concentric and eccentric disc design for large-diameter applications in water, HVAC and process industries.</p>
+              <div class="product-specs">
+                <span class="spec-tag">DN50–DN2000</span>
+                <span class="spec-tag">EPDM / PTFE Liner</span>
+                <span class="spec-tag">Pneumatic Actuator</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-3" data-item>
+          <div class="product-card" data-category="valves">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=70" alt="Control Valve" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Valves</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Control Valves</h4>
+              <p>Globe-type and rotary control valves with pneumatic actuators and smart positioners for precise flow/pressure/temperature regulation. HART compatible.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Cv = 0.001–4000</span>
+                <span class="spec-tag">HART Positioner</span>
+                <span class="spec-tag">Fail-Safe Design</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-1" data-item>
+          <div class="product-card" data-category="valves">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1581091012184-7e0cdfbb6797?w=600&q=70" alt="Solenoid Valve" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Valves</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Solenoid Valves</h4>
+              <p>Direct-acting and pilot-operated solenoid valves for pneumatic and hydraulic systems. Available in 2/2, 3/2, 5/2 configurations with ATEX certifications.</p>
+              <div class="product-specs">
+                <span class="spec-tag">24VDC / 230VAC</span>
+                <span class="spec-tag">ATEX / IP65</span>
+                <span class="spec-tag">Brass / SS Body</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-2" data-item>
+          <div class="product-card" data-category="valves">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1612235253836-a7d714bc0e72?w=600&q=70" alt="Safety Relief Valve" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Valves</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Safety &amp; Relief Valves</h4>
+              <p>Spring-loaded and pilot-operated safety relief valves for pressure protection of vessels and pipelines. IBR approved for steam applications.</p>
+              <div class="product-specs">
+                <span class="spec-tag">IBR Approved</span>
+                <span class="spec-tag">ASME Section I / VIII</span>
+                <span class="spec-tag">Full Lift</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-3" data-item>
+          <div class="product-card" data-category="valves">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70" alt="Check Valve" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Valves</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Check &amp; Gate Valves</h4>
+              <p>Non-return check valves (swing, wafer, lift) and gate valves for isolation in pipelines. Available in cast iron, WCB, SS316 for water, steam and chemical service.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Swing / Wafer / Lift</span>
+                <span class="spec-tag">WCB / SS316</span>
+                <span class="spec-tag">PN10–PN40</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════
+       INSTRUMENTATION SECTION
+  ═══════════════════════════ -->
+  <section class="section-pad section-dark" id="instruments">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Process Monitoring</div>
+        <h2 class="section-title"><i class="fa-solid fa-gauge-high text-accent me-2"></i>Process Instrumentation</h2>
+        <div class="divider-brand"></div>
+        <p class="section-subtitle">High-accuracy measurement instruments for flow, pressure, level, temperature, pH and conductivity.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3 reveal delay-1" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=70" alt="Electromagnetic Flow Meter" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Flow</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Electromagnetic Flow Meters</h4>
+              <p>High-accuracy EMF for conductive liquids. HART, Profibus and Modbus communication. IP67 protection.</p>
+              <div class="product-specs">
+                <span class="spec-tag">±0.3% Accuracy</span>
+                <span class="spec-tag">HART / Profibus</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-2" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563455765-9b2de95a7e0c?w=600&q=70" alt="Ultrasonic Flow Meter" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Flow</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Ultrasonic Flow Meters</h4>
+              <p>Clamp-on and inline ultrasonic flow meters for non-invasive measurement. Ideal for large-bore pipes and non-conductive liquids.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Clamp-On</span>
+                <span class="spec-tag">DN15–DN6000</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-3" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600&q=70" alt="Pressure Transmitter" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Pressure</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Pressure Transmitters</h4>
+              <p>Smart pressure transmitters with 4–20mA, HART output. Ranges from 0–10 mbar to 0–1000 bar. SS316 wetted parts.</p>
+              <div class="product-specs">
+                <span class="spec-tag">±0.1% Accuracy</span>
+                <span class="spec-tag">4-20mA / HART</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-4" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70" alt="Level Transmitter" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Level</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Level Transmitters</h4>
+              <p>Hydrostatic, ultrasonic, radar and guided-wave radar level transmitters for tanks, vessels and open channels.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Radar / Ultrasonic</span>
+                <span class="spec-tag">ATEX Rated</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-1" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1612235253836-a7d714bc0e72?w=600&q=70" alt="Temperature Sensor" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Temperature</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Temperature Instruments</h4>
+              <p>RTD, thermocouple assemblies, temperature transmitters and indicators. Various immersion lengths and process connections available.</p>
+              <div class="product-specs">
+                <span class="spec-tag">PT100 / Thermocouple</span>
+                <span class="spec-tag">–200 to +1700°C</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-2" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1565108520693-c4ebc04cefed?w=600&q=70" alt="pH Analyser" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Analyser</span>
+            </div>
+            <div class="product-card-body">
+              <h4>pH &amp; Conductivity Meters</h4>
+              <p>Online process pH, ORP, conductivity and dissolved oxygen analysers for water treatment, pharmaceutical and chemical applications.</p>
+              <div class="product-specs">
+                <span class="spec-tag">pH 0–14</span>
+                <span class="spec-tag">Online / Portable</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-3" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70" alt="Vortex Flow Meter" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Flow</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Vortex Flow Meters</h4>
+              <p>Vortex shedding meters for steam, gas and low-viscosity liquid measurement. No moving parts, minimal maintenance.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Steam / Gas / Liquid</span>
+                <span class="spec-tag">DN15–DN300</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-4" data-item>
+          <div class="product-card" data-category="instruments">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1581091012184-7e0cdfbb6797?w=600&q=70" alt="Coriolis Flow Meter" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Flow</span>
+            </div>
+            <div class="product-card-body">
+              <h4>Coriolis Mass Flow Meters</h4>
+              <p>High-accuracy Coriolis meters for mass flow, density and concentration measurement. Suitable for all fluids including gases.</p>
+              <div class="product-specs">
+                <span class="spec-tag">±0.1% Mass Accuracy</span>
+                <span class="spec-tag">Density Measurement</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════
+       AUTOMATION SECTION
+  ═══════════════════════════ -->
+  <section class="section-pad section-dark-2" id="automation">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Smart Control</div>
+        <h2 class="section-title"><i class="fa-solid fa-microchip text-accent me-2"></i>Automation &amp; Control Systems</h2>
+        <div class="divider-brand"></div>
+        <p class="section-subtitle">Complete process automation from PLC panels to SCADA systems and data acquisition.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 reveal delay-1" data-item>
+          <div class="product-card" data-category="automation">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1581091012184-7e0cdfbb6797?w=600&q=70" alt="PLC Control Panel" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Automation</span>
+            </div>
+            <div class="product-card-body">
+              <h4>PLC Control Panels</h4>
+              <p>Engineered PLC panels using Siemens S7, Allen-Bradley, Mitsubishi and Delta PLCs. Custom design, fabrication and programming for any process application.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Siemens / AB / Delta</span>
+                <span class="spec-tag">HMI Integration</span>
+                <span class="spec-tag">Remote I/O</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 reveal delay-2" data-item>
+          <div class="product-card" data-category="automation">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=70" alt="SCADA System" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Automation</span>
+            </div>
+            <div class="product-card-body">
+              <h4>SCADA Systems</h4>
+              <p>Wonderware, Ignition, and WinCC-based SCADA solutions for real-time monitoring, data logging, trending and alarm management across plant networks.</p>
+              <div class="product-specs">
+                <span class="spec-tag">Ignition / WinCC</span>
+                <span class="spec-tag">Web-based HMI</span>
+                <span class="spec-tag">OPC-UA / Modbus</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 reveal delay-3" data-item>
+          <div class="product-card" data-category="automation">
+            <div class="product-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563455765-9b2de95a7e0c?w=600&q=70" alt="VFD Drive" loading="lazy" />
+              <div class="product-img-overlay"></div>
+              <span class="product-category-tag">Automation</span>
+            </div>
+            <div class="product-card-body">
+              <h4>VFD / Variable Frequency Drives</h4>
+              <p>Energy-efficient variable frequency drives for pump and motor speed control. ABB, Siemens and Danfoss drives from 0.37 kW to 2.8 MW.</p>
+              <div class="product-specs">
+                <span class="spec-tag">0.37–2800 kW</span>
+                <span class="spec-tag">ABB / Siemens</span>
+                <span class="spec-tag">Energy Saving</span>
+              </div>
+            </div>
+            <div class="product-card-footer">
+              <a href="enquiry.html" class="btn-enquire">Get Quote</a>
+              <button class="btn-details"><i class="fa-solid fa-info"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="section-pad section-dark" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">After Sales</div>
+        <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench text-accent me-2"></i>Services We Provide</h2>
+        <div class="divider-brand"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3 reveal delay-1" data-item>
+          <div class="service-card" data-category="services">
+            <div class="service-icon-wrap"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <h4>AMC Contracts</h4>
+            <p>Annual Maintenance Contracts covering preventive maintenance, emergency breakdown support, calibration and spares management for your entire instrumentation portfolio.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 reveal delay-2" data-item>
+          <div class="service-card" data-category="services">
+            <div class="service-icon-wrap"><i class="fa-solid fa-rocket"></i></div>
+            <h4>Installation &amp; Commissioning</h4>
+            <p>Professional installation and commissioning of all equipment supplied by Fluid-Tech. Includes site readiness checks, mechanical installation, electrical loop testing and process commissioning.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 reveal delay-3" data-item>
+          <div class="service-card" data-category="services">
+            <div class="service-icon-wrap"><i class="fa-solid fa-ruler-combined"></i></div>
+            <h4>Calibration Services</h4>
+            <p>NABL-traceable calibration for pressure, temperature, flow and level instruments. On-site and in-lab calibration with calibration certificates and tagging.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3 reveal delay-4" data-item>
+          <div class="service-card" data-category="services">
+            <div class="service-icon-wrap"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h4>Technical Training</h4>
+            <p>Operator and maintenance training programmes for instrumentation, PLC/SCADA and pump systems. Both on-site and classroom-based training modules available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-7">
+          <h2>Need a Custom Engineering<br>Solution?</h2>
+          <p>Share your process requirements and we'll propose the most efficient and cost-effective solution.</p>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <div class="d-flex gap-3 justify-content-lg-end flex-wrap">
+            <a href="enquiry.html" class="btn-cta-white"><i class="fa-solid fa-paper-plane"></i> Send Enquiry</a>
+            <a href="tel:+912012345678" class="btn-cta-outline-white"><i class="fa-solid fa-phone"></i> Call Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (shared) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand"><img src="fluid_tech_logo-removebg-preview.png" alt="Logo" /><span class="brand-name">Fluid-Tech</span></div>
+          <p class="footer-desc">Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.</p>
+          <div class="footer-social">
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+          <h6 class="footer-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index1.html">Home</a></li>
+            <li><a href="about1.html">About Us</a></li>
+            <li><a href="product1.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <h6 class="footer-title">Products</h6>
+          <ul class="footer-links">
+            <li><a href="#pumps">Centrifugal Pumps</a></li>
+            <li><a href="#valves">Control Valves</a></li>
+            <li><a href="#instruments">Flow Meters</a></li>
+            <li><a href="#instruments">Pressure Transmitters</a></li>
+            <li><a href="#automation">PLC / SCADA</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-title">Contact Us</h6>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Bhosari MIDC, Pune – 411026, Maharashtra</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+912012345678">+91 20 1234 5678</a></div>
+          <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      </div>
     </div>
   </footer>
-  <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="float-btn float-wa"><i class="fa-brands fa-whatsapp"></i></a>
-  <button class="float-btn float-top"><i class="fa-solid fa-chevron-up"></i></button>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-btns">
+    <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+    <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!" class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script1.js"></script>
 </body>
 </html>

@@ -1,167 +1,709 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Video Gallery — Fluid Tech</title>
-  <meta name="description" content="Watch Fluid Tech product demos, plant tours and installation videos." />
-  <link rel="icon" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fluid-Tech Video Gallery – Watch product demos, installation videos, pump testing and automation systems from Fluid-Tech Pune." />
+  <title>Video Gallery | Fluid-Tech – Industrial Process Solutions, Pune</title>
+  <link rel="icon" type="image/webp" href="fluid_tech_logo-removebg-preview.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style1.css" />
+  <style>
+    /* Video Card Styles */
+    .video-card {
+      background: var(--dark-2);
+      border: 1px solid rgba(20,85,164,0.2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0,198,232,0.4);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .video-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .video-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+    .video-card:hover .video-thumb-wrap img { transform: scale(1.06); }
+    .video-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6,15,30,0.45);
+      transition: background 0.3s ease;
+    }
+    .video-card:hover .video-thumb-overlay { background: rgba(6,15,30,0.3); }
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 8px 32px rgba(20,85,164,0.55);
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+    }
+    .video-card:hover .video-play-btn {
+      transform: translate(-50%, -50%) scale(1.18);
+      box-shadow: 0 12px 40px rgba(20,85,164,0.75);
+    }
+    .video-play-btn::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,198,232,0.35);
+      animation: pulseRing 2s ease-in-out infinite;
+    }
+    @keyframes pulseRing {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.12); opacity: 0.1; }
+    }
+    .video-duration-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(6,15,30,0.85);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .video-category-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--gradient-brand);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .video-card-body {
+      padding: 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-card-body h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .video-card-body p {
+      font-size: 0.84rem;
+      color: var(--gray);
+      margin-bottom: 16px;
+      flex: 1;
+      line-height: 1.65;
+    }
+    .video-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .video-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      color: var(--gray);
+    }
+    .video-meta-item i { color: var(--accent); font-size: 0.7rem; }
+
+    /* Featured video */
+    .featured-video-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(20,85,164,0.3);
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 16/9;
+      background: var(--dark-3);
+    }
+    .featured-video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .featured-video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      cursor: pointer;
+    }
+    .featured-video-placeholder img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+    .featured-video-placeholder .big-play {
+      position: relative;
+      z-index: 2;
+      width: 90px;
+      height: 90px;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 16px 50px rgba(20,85,164,0.65);
+      transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+    }
+    .featured-video-placeholder:hover .big-play {
+      transform: scale(1.12);
+    }
+    .featured-video-placeholder .featured-label {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+    }
+
+    /* Video Modal */
+    .video-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(6,15,30,0.97);
+      backdrop-filter: blur(24px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .video-modal-overlay.active { display: flex; }
+    .video-modal-inner {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+    }
+    .video-modal-inner iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(20,85,164,0.3);
+    }
+    .video-modal-close {
+      position: absolute;
+      top: -52px;
+      right: 0;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .video-modal-close:hover { background: rgba(220,53,69,0.4); }
+  </style>
 </head>
 <body>
 
-    <!-- ============ NAVBAR ============ -->
-  <nav class="ft-navbar navbar navbar-expand-lg">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html"><img src="fluid_tech_logo-removebg-preview.png" alt="Fluid Tech logo" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftNav"><i class="fa-solid fa-bars fa-lg" style="color: var(--ft-primary);"></i></button>
-      <div class="collapse navbar-collapse" id="ftNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-         <li class="nav-item dropdown position-static">
-  <a class="nav-link dropdown-toggle" href="product.html" data-bs-toggle="dropdown">Products &amp; Services</a>
-  <div class="dropdown-menu ft-mega-menu p-4">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Flow Meter</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Liquid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker loading Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Chemical P.D. Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Acid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Digital Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Industrial Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Flow Measurement Systems</a></li>
-            <li><a class="dropdown-item px-0" href="#">Oscillating Piston Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">P.d. Flow Transmitter</a></li>
-            <li><a class="dropdown-item px-0" href="#">AD Blue Flow Meter</a></li>
-          </ul>
+      <a class="navbar-brand" href="index1.html">
+        <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+        <div class="brand-text">
+          <span class="brand-name">Fluid-Tech</span>
+          <span class="brand-tagline">Process &amp; Automation</span>
         </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Oil Filling Machine</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Dual Channel Oil Filling Machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Single channel oil filling machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Brake Oil Filling Machine</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Decanter Centrifuge</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Tanker Decantation system</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker Unloading System</a></li>
-            <li><a class="dropdown-item px-0" href="#">Fuel and Solvents Unloading System</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Mobile Fuel Dispenser</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Mobile Fuel Dispenser</a></li>
-            <li><a class="dropdown-item px-0" href="#">4 nozzle dispensing system</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Dispenser</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Fuel Dispenser stationary unit</a></li>
-            <li><a class="dropdown-item px-0" href="#">Diesel Dispenser Machines</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Positive Displacement Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pd Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pharma PD Flow Meter</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Fluid Tech FT2300 25 Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Dm Water Flow Meter</a></li>
-          </ul>
-          
-          <div class="mt-3">
-            <a href="product.html" class="text-decoration-none fw-bold" style="color: var(--ft-primary);">View all categories &rarr;</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</li>
-          <li class="nav-item"><a class="nav-link" href="photo_gallery.html">Photo</a></li>
-          <li class="nav-item"><a class="nav-link" href="video_gallery.html">Video</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-ft-primary" href="enquiry.html">Enquiry</a></li>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav gap-1 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index1.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about1.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="product1.html">Products &amp; Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="photo_gallery1.html">Photo Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="video_gallery1.html">Videos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact1.html">Contact</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry1.html">Get Enquiry</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="page-header">
-    <div class="container">
-      <h1>Video Gallery</h1>
-      <nav aria-label="breadcrumb"><ol class="breadcrumb mt-2 mb-0"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Video Gallery</li></ol></nav>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-gradient"></div>
+    <div class="container page-hero-content">
+      <ul class="breadcrumb-custom">
+        <li><a href="index1.html">Home</a></li>
+        <li class="active">Video Gallery</li>
+      </ul>
+      <h1>Video <span class="text-accent">Gallery</span></h1>
+      <p>Watch product demonstrations, installation walkthroughs, pump testing, and automation system showcases from Fluid-Tech Pune.</p>
     </div>
-  </header>
-  <section class="section">
+  </section>
+
+  <!-- FEATURED VIDEO -->
+  <section class="section-pad section-dark" style="padding-bottom:50px;">
     <div class="container">
-      <div class="text-center mb-5 reveal">
-        <span class="section-eyebrow">Watch &amp; learn</span>
-        <h2 class="section-title">Product demos &amp; installations</h2>
-        <p class="text-muted-2 mx-auto" style="max-width:680px;">See Fluid Tech equipment in action — flow meters under test, dispensers in the field and decantation systems on site.</p>
-      </div>
-      <div class="row g-4">
-        <!-- Replace the placeholder iframes with your YouTube/Vimeo embed URLs -->
-        <div class="col-md-6 reveal"><div class="video-card">
-          <div class="ratio ratio-16x9 video-thumb">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Flow Meter Demo" allowfullscreen loading="lazy"></iframe>
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-7 reveal-left">
+          <div class="featured-video-wrap" id="featuredVideoWrap">
+            <!-- Thumbnail placeholder; click to load iframe -->
+            <div class="featured-video-placeholder" id="featuredPlaceholder" onclick="loadFeaturedVideo()">
+              <img src="https://images.unsplash.com/photo-1581091012184-7e0cdfbb6797?w=1200&q=80" alt="Featured Video" loading="lazy" />
+              <div class="big-play"><i class="fa-solid fa-play" style="margin-left:4px;"></i></div>
+              <div class="featured-label">Company Overview &amp; Solutions</div>
+            </div>
           </div>
-          <div class="body"><h6>Positive Displacement Flow Meter Demo</h6><p>How the FT2300 PD meter delivers accurate volumetric measurement.</p></div>
-        </div></div>
-        <div class="col-md-6 reveal"><div class="video-card">
-          <div class="ratio ratio-16x9 video-thumb">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Mobile Fuel Dispenser" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="col-lg-5 reveal-right">
+          <div class="ps-lg-3">
+            <div class="section-eyebrow">Featured Video</div>
+            <h2 class="section-title">Fluid-Tech — <span class="accent">Who We Are</span></h2>
+            <div class="divider-brand"></div>
+            <p class="text-gray-light mb-3" style="font-size:0.93rem; line-height:1.75;">
+              Get a complete overview of Fluid-Tech's capabilities — from industrial pump systems and valve automation to flow measurement and complete SCADA-based process control.
+            </p>
+            <ul class="hero-service-list mb-4" style="list-style:none; padding:0; margin:0;">
+              <li style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:0.88rem;color:var(--gray-light);border-bottom:1px solid rgba(255,255,255,0.07);">
+                <i class="fa-solid fa-check-circle" style="color:var(--accent);font-size:0.8rem;"></i>
+                Company profile and core competencies
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:0.88rem;color:var(--gray-light);border-bottom:1px solid rgba(255,255,255,0.07);">
+                <i class="fa-solid fa-check-circle" style="color:var(--accent);font-size:0.8rem;"></i>
+                Product portfolio walkthrough
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:0.88rem;color:var(--gray-light);border-bottom:1px solid rgba(255,255,255,0.07);">
+                <i class="fa-solid fa-check-circle" style="color:var(--accent);font-size:0.8rem;"></i>
+                Client installations and case studies
+              </li>
+              <li style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:0.88rem;color:var(--gray-light);">
+                <i class="fa-solid fa-check-circle" style="color:var(--accent);font-size:0.8rem;"></i>
+                After-sales support and AMC services
+              </li>
+            </ul>
+            <a href="enquiry.html" class="btn-primary-brand">
+              <i class="fa-solid fa-paper-plane"></i> Get a Quote
+            </a>
           </div>
-          <div class="body"><h6>Mobile Fuel Dispenser Walkthrough</h6><p>Skid-mounted 4-nozzle dispensing system for on-site refuelling.</p></div>
-        </div></div>
-        <div class="col-md-6 reveal"><div class="video-card">
-          <div class="ratio ratio-16x9 video-thumb">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Oil Filling Machine" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="body"><h6>Dual-Channel Oil Filling Machine</h6><p>Production-line filling for automotive engine oil.</p></div>
-        </div></div>
-        <div class="col-md-6 reveal"><div class="video-card">
-          <div class="ratio ratio-16x9 video-thumb">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tanker Unloading" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <div class="body"><h6>Tanker Unloading System</h6><p>Metered, controlled unloading of fuel and solvent tankers.</p></div>
-        </div></div>
+        </div>
       </div>
     </div>
   </section>
-  <footer class="ft-footer">
+
+  <!-- VIDEO GRID — PRODUCT DEMOS -->
+  <section class="section-pad section-dark-2" style="padding-top:40px;">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4"><div class="brand"><img src="images/logo.png" alt="Fluid Tech"><span>FluidTech</span></div><p>Industrial flow meters, fuel dispensing &amp; process automation engineered in Pune.</p><div class="socials mt-3"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
-        <div class="col-6 col-lg-2"><h6>Company</h6><ul><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="photo-gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div class="col-6 col-lg-3"><h6>Products</h6><ul><li><a href="products.html#flow-meter">Flow Meter</a></li><li><a href="products.html#fuel-dispenser">Fuel Dispenser</a></li><li><a href="products.html#oil-filling">Oil Filling Machine</a></li><li><a href="products.html#decanter">Decanter Centrifuge</a></li></ul></div>
-        <div class="col-lg-3"><h6>Get in touch</h6><ul><li><i class="fa-solid fa-location-dot me-2"></i>Shivane, Pune, Maharashtra</li><li><i class="fa-solid fa-phone me-2"></i><a href="tel:+910000000000">+91 00000 00000</a></li><li><i class="fa-solid fa-envelope me-2"></i><a href="mailto:info@fluidtech.example">info@fluidtech.example</a></li><li><i class="fa-brands fa-whatsapp me-2"></i><a href="https://wa.me/910000000000">WhatsApp chat</a></li></ul></div>
+      <div class="section-header text-center reveal">
+        <div class="section-eyebrow">Product Demos</div>
+        <h2 class="section-title">Product <span class="accent">Demonstration Videos</span></h2>
+        <div class="divider-brand mx-auto"></div>
+        <p class="section-subtitle mx-auto">See our industrial equipment in action — working demos and performance tests.</p>
       </div>
-      <div class="copy text-center">&copy; <span id="yr"></span> Fluid Tech. All rights reserved. <script>document.getElementById('yr').textContent=new Date().getFullYear();</script></div>
+
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-4 reveal delay-1">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Pumps</span>
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Centrifugal Pump Demo" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">4:32</div>
+            </div>
+            <div class="video-card-body">
+              <h5>Centrifugal Pump Performance Test</h5>
+              <p>Watch our high-efficiency centrifugal pump undergo flow and pressure performance testing in our facility before dispatch.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 12.4K views</div>
+                <div class="video-meta-item"><i class="fa-solid fa-calendar"></i> Mar 2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-2">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Valves</span>
+              <img src="https://images.unsplash.com/photo-1611267254323-4db7b39c732c?w=700&q=80" alt="Control Valve Demo" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">3:18</div>
+            </div>
+            <div class="video-card-body">
+              <h5>Control Valve Actuator Operation</h5>
+              <p>Step-by-step demonstration of pneumatic actuator calibration and control valve stroke testing with smart positioner setup.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 8.7K views</div>
+                <div class="video-meta-item"><i class="fa-solid fa-calendar"></i> Jan 2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-3">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Instrumentation</span>
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=80" alt="Flow Meter Demo" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">5:04</div>
+            </div>
+            <div class="video-card-body">
+              <h5>Electromagnetic Flow Meter Calibration</h5>
+              <p>Complete calibration process for an electromagnetic flow meter — zero-point setting, span adjustment and output verification.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 15.2K views</div>
+                <div class="video-meta-item"><i class="fa-solid fa-calendar"></i> Feb 2024</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO GRID — INSTALLATIONS -->
+  <section class="section-pad section-dark" style="padding-top:40px;">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="section-eyebrow">On-site Work</div>
+        <h2 class="section-title">Installation &amp; <span class="accent">Commissioning Videos</span></h2>
+        <div class="divider-brand mx-auto"></div>
+        <p class="section-subtitle mx-auto">See how our expert team handles site installations across industrial sectors.</p>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-4 reveal delay-1">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Automation</span>
+              <img src="https://images.unsplash.com/photo-1581091012184-7e0cdfbb6797?w=700&q=80" alt="PLC Panel Installation" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">7:45</div>
+            </div>
+            <div class="video-card-body">
+              <h5>PLC Panel Installation – Pharma Plant</h5>
+              <p>Full walkthrough of a PLC-based automation panel installation at a pharmaceutical facility in Pune, including I/O wiring and SCADA integration.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 9.1K views</div>
+                <div class="video-meta-item"><i class="fa-solid fa-calendar"></i> Nov 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-2">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Pumps</span>
+              <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=700&q=80" alt="Pump Skid Installation" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">6:12</div>
+            </div>
+            <div class="video-card-body">
+              <h5>Pump Skid Commissioning – Water Treatment</h5>
+              <p>Complete pump skid commissioning at a municipal water treatment plant — alignment, coupling, startup and performance verification.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 7.8K views</div>
+                <div class="video-meta-item"><i class="fa-solid fa-calendar"></i> Oct 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal delay-3">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Process Plants</span>
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&q=80" alt="ETP Plant" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">8:30</div>
+            </div>
+            <div class="video-card-body">
+              <h5>ETP Automation – Chemical Industry</h5>
+              <p>Automated effluent treatment plant setup with pH dosing control, flow monitoring and real-time SCADA dashboard for a chemical manufacturer.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 11.3K views</div>
+                <div class="video-meta-item"><i class="fa-solid fa-calendar"></i> Sep 2023</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO GRID — TRAINING & TUTORIALS -->
+  <section class="section-pad section-dark-2" style="padding-top:40px;">
+    <div class="container">
+      <div class="section-header text-center reveal">
+        <div class="section-eyebrow">Knowledge Hub</div>
+        <h2 class="section-title">Training &amp; <span class="accent">Tutorial Videos</span></h2>
+        <div class="divider-brand mx-auto"></div>
+        <p class="section-subtitle mx-auto">Technical guides and how-to videos for our industrial products.</p>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-3 reveal delay-1">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Tutorial</span>
+              <img src="https://images.unsplash.com/photo-1563455765-9b2de95a7e0c?w=600&q=80" alt="Tutorial" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn" style="width:50px;height:50px;font-size:1.1rem;"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">3:55</div>
+            </div>
+            <div class="video-card-body">
+              <h5>How to Select the Right Pump</h5>
+              <p>A guide to selecting the correct pump type, size and material for your process application.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 22K views</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-2">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Tutorial</span>
+              <img src="https://images.unsplash.com/photo-1565108520693-c4ebc04cefed?w=600&q=80" alt="Tutorial" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn" style="width:50px;height:50px;font-size:1.1rem;"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">4:18</div>
+            </div>
+            <div class="video-card-body">
+              <h5>Flow Meter Installation Best Practices</h5>
+              <p>Proper straight-run requirements, grounding and commissioning tips for electromagnetic flow meters.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 18.5K views</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-3">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Tutorial</span>
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Tutorial" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn" style="width:50px;height:50px;font-size:1.1rem;"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">5:22</div>
+            </div>
+            <div class="video-card-body">
+              <h5>Pressure Transmitter Loop Testing</h5>
+              <p>Step-by-step 4-20mA loop testing and HART commissioning for smart pressure transmitters.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 14.2K views</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 reveal delay-4">
+          <div class="video-card">
+            <div class="video-thumb-wrap" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" onclick="openVideoModal(this.dataset.video)">
+              <span class="video-category-tag">Tutorial</span>
+              <img src="https://images.unsplash.com/photo-1612235253836-a7d714bc0e72?w=600&q=80" alt="Tutorial" loading="lazy" />
+              <div class="video-thumb-overlay"></div>
+              <div class="video-play-btn" style="width:50px;height:50px;font-size:1.1rem;"><i class="fa-solid fa-play" style="margin-left:3px;"></i></div>
+              <div class="video-duration-badge">6:40</div>
+            </div>
+            <div class="video-card-body">
+              <h5>PLC Basics for Process Control</h5>
+              <p>Introduction to PLC ladder logic, analog I/O modules and PID control for industrial process applications.</p>
+              <div class="video-meta">
+                <div class="video-meta-item"><i class="fa-solid fa-eye"></i> 31K views</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO MODAL -->
+  <div class="video-modal-overlay" id="videoModalOverlay" onclick="closeVideoModal(event)">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" onclick="closeVideoModal(null, true)"><i class="fa-solid fa-xmark"></i></button>
+      <iframe id="videoModalIframe" src="" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-7">
+          <h2>Want to See Our Equipment<br>at Your Site?</h2>
+          <p>Request a product demonstration or send your enquiry for a customised industrial solution.</p>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <div class="d-flex gap-3 justify-content-lg-end flex-wrap">
+            <a href="enquiry.html" class="btn-cta-white"><i class="fa-solid fa-paper-plane"></i> Send Enquiry</a>
+            <a href="gallery.html" class="btn-cta-outline-white"><i class="fa-solid fa-images"></i> Photo Gallery</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+            <span class="brand-name">Fluid-Tech</span>
+          </div>
+          <p class="footer-desc">Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+          <h6 class="footer-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index1.html">Home</a></li>
+            <li><a href="about1.html">About Us</a></li>
+            <li><a href="product1.html">Products</a></li>
+            <li><a href="photo_gallery1.html">Photo Gallery</a></li>
+            <li><a href="video_gallery1.html">Video Gallery</a></li>
+            <li><a href="contact1.html">Contact</a></li>
+            <li><a href="enquiry1.html">Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <h6 class="footer-title">Products</h6>
+          <ul class="footer-links">
+            <li><a href="product1.html#pumps">Centrifugal Pumps</a></li>
+            <li><a href="product1.html#valves">Control &amp; Ball Valves</a></li>
+            <li><a href="product1.html#instruments">Flow Meters</a></li>
+            <li><a href="product1.html#instruments">Pressure Transmitters</a></li>
+            <li><a href="product1.html#automation">PLC / SCADA Systems</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-title">Contact Us</h6>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Fluid-Tech, Near Bhosari MIDC,<br>Pune – 411026, Maharashtra, India</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+912012345678">+91 20 1234 5678</a></div>
+          <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon–Sat: 9:00 AM – 6:30 PM</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
-  <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="float-btn float-wa"><i class="fa-brands fa-whatsapp"></i></a>
-  <button class="float-btn float-top"><i class="fa-solid fa-chevron-up"></i></button>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-btns">
+    <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+    <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!%20I%20need%20a%20quote%20for%20industrial%20equipment." class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script1.js"></script>
+  <script>
+    function loadFeaturedVideo() {
+      const placeholder = document.getElementById('featuredPlaceholder');
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+      iframe.allow = 'autoplay; encrypted-media; fullscreen';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+      placeholder.replaceWith(iframe);
+    }
+
+    function openVideoModal(url) {
+      const overlay = document.getElementById('videoModalOverlay');
+      const iframe  = document.getElementById('videoModalIframe');
+      iframe.src = url + '?autoplay=1';
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal(event, force) {
+      if (!force && event && event.target !== document.getElementById('videoModalOverlay')) return;
+      const overlay = document.getElementById('videoModalOverlay');
+      document.getElementById('videoModalIframe').src = '';
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeVideoModal(null, true);
+    });
+  </script>
 </body>
 </html>

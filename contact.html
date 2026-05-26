@@ -1,180 +1,586 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Fluid Tech — Pune | Phone, Email, Address</title>
-  <meta name="description" content="Contact Fluid Tech, Shivane, Pune. Phone, email, WhatsApp and location map for sales, service and enquiries." />
-  <link rel="icon" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Fluid-Tech Pune – Call, WhatsApp or visit us at Bhosari MIDC. Industrial pumps, valves, instrumentation and automation solutions." />
+  <meta name="keywords" content="contact fluid tech pune, fluid tech address, industrial equipment pune contact" />
+  <title>Contact Us | Fluid-Tech – Industrial Process Solutions, Pune</title>
+  <link rel="icon" type="image/webp" href="fluid_tech_logo-removebg-preview.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style1.css" />
+  <style>
+    /* Contact Info Cards */
+    .contact-info-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(20,85,164,0.22);
+      border-radius: var(--radius-lg);
+      padding: 28px 26px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: var(--transition);
+      height: 100%;
+    }
+    .contact-info-card:hover {
+      border-color: rgba(0,198,232,0.4);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .contact-icon {
+      width: 54px;
+      height: 54px;
+      background: var(--gradient-brand);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-brand);
+    }
+    .contact-text h5 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .contact-text p, .contact-text a {
+      font-size: 0.92rem;
+      color: var(--gray-light);
+      margin: 0;
+      line-height: 1.65;
+      transition: color 0.25s;
+    }
+    .contact-text a:hover { color: var(--accent); }
+    .contact-text .contact-sub {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* Map */
+    .map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(20,85,164,0.25);
+      box-shadow: var(--shadow-md);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+      display: block;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85);
+    }
+
+    /* Business Hours Table */
+    .hours-table {
+      width: 100%;
+    }
+    .hours-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td {
+      padding: 10px 0;
+      font-size: 0.87rem;
+      color: var(--gray);
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      color: var(--gray-light);
+      font-weight: 500;
+    }
+    .hours-today td { color: var(--accent) !important; }
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(40,167,69,0.15);
+      border: 1px solid rgba(40,167,69,0.3);
+      color: #66d47d;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
+    }
+    .open-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #66d47d;
+      animation: blinkDot 1.5s ease-in-out infinite;
+    }
+    @keyframes blinkDot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    /* Social Connect */
+    .social-connect-wrap {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .social-connect-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+      border: 1.5px solid;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .social-connect-btn.whatsapp { border-color: #25D366; color: #25D366; }
+    .social-connect-btn.whatsapp:hover { background: #25D366; color: white; }
+    .social-connect-btn.linkedin { border-color: #0A66C2; color: #0A66C2; }
+    .social-connect-btn.linkedin:hover { background: #0A66C2; color: white; }
+    .social-connect-btn.facebook { border-color: #1877F2; color: #1877F2; }
+    .social-connect-btn.facebook:hover { background: #1877F2; color: white; }
+    .social-connect-btn.youtube { border-color: #FF0000; color: #FF0000; }
+    .social-connect-btn.youtube:hover { background: #FF0000; color: white; }
+
+    /* Quick contact form card */
+    .quick-form-card {
+      background: var(--dark-2);
+      border: 1px solid rgba(20,85,164,0.25);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+    .quick-form-card .form-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 7px;
+    }
+  </style>
 </head>
 <body>
-  
-    <!-- ============ NAVBAR ============ -->
 
-      <nav class="ft-navbar navbar navbar-expand-lg">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html"><img src="fluid_tech_logo-removebg-preview.png" alt="Fluid Tech logo" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftNav"><i class="fa-solid fa-bars fa-lg" style="color: var(--ft-primary);"></i></button>
-      <div class="collapse navbar-collapse" id="ftNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-         <li class="nav-item dropdown position-static">
-  <a class="nav-link dropdown-toggle" href="product.html" data-bs-toggle="dropdown">Products &amp; Services</a>
-  <div class="dropdown-menu ft-mega-menu p-4">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Flow Meter</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Liquid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker loading Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Chemical P.D. Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Acid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Digital Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Industrial Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Flow Measurement Systems</a></li>
-            <li><a class="dropdown-item px-0" href="#">Oscillating Piston Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">P.d. Flow Transmitter</a></li>
-            <li><a class="dropdown-item px-0" href="#">AD Blue Flow Meter</a></li>
-          </ul>
+      <a class="navbar-brand" href="index1.html">
+        <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+        <div class="brand-text">
+          <span class="brand-name">Fluid-Tech</span>
+          <span class="brand-tagline">Process &amp; Automation</span>
         </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Oil Filling Machine</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Dual Channel Oil Filling Machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Single channel oil filling machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Brake Oil Filling Machine</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Decanter Centrifuge</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Tanker Decantation system</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker Unloading System</a></li>
-            <li><a class="dropdown-item px-0" href="#">Fuel and Solvents Unloading System</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Mobile Fuel Dispenser</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Mobile Fuel Dispenser</a></li>
-            <li><a class="dropdown-item px-0" href="#">4 nozzle dispensing system</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Dispenser</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Fuel Dispenser stationary unit</a></li>
-            <li><a class="dropdown-item px-0" href="#">Diesel Dispenser Machines</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Positive Displacement Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pd Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pharma PD Flow Meter</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Fluid Tech FT2300 25 Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Dm Water Flow Meter</a></li>
-          </ul>
-          
-          <div class="mt-3">
-            <a href="product.html" class="text-decoration-none fw-bold" style="color: var(--ft-primary);">View all categories &rarr;</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</li>
-          <li class="nav-item"><a class="nav-link" href="photo_gallery.html">Photo</a></li>
-          <li class="nav-item"><a class="nav-link" href="video_gallery.html">Video</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-ft-primary" href="enquiry.html">Enquiry</a></li>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav gap-1 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index1.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about1.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="product1.html">Products &amp; Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="photo_gallery1.html">Photo Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="video_gallery1.html">Videos</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact1.html">Contact</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry1.html">Get Enquiry</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="page-header">
-    <div class="container">
-      <h1>Contact Us</h1>
-      <nav aria-label="breadcrumb"><ol class="breadcrumb mt-2 mb-0"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Contact</li></ol></nav>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-gradient"></div>
+    <div class="container page-hero-content">
+      <ul class="breadcrumb-custom">
+        <li><a href="index1.html">Home</a></li>
+        <li class="active">Contact Us</li>
+      </ul>
+      <h1>Get In <span class="text-accent">Touch</span></h1>
+      <p>Have a project requirement or need a product quote? Our technical team is ready to assist you — call, WhatsApp or email us directly.</p>
     </div>
-  </header>
-  <section class="section">
+  </section>
+
+  <!-- CONTACT INFO CARDS -->
+  <section class="section-pad section-dark">
     <div class="container">
-      <div class="text-center mb-5 reveal">
-        <span class="section-eyebrow">Get in touch</span>
-        <h2 class="section-title">We&rsquo;re here to help</h2>
-        <p class="text-muted-2 mx-auto" style="max-width:640px;">Reach us by phone, email or WhatsApp — or visit our facility in Shivane, Pune.</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3 reveal"><div class="contact-card"><div class="icon"><i class="fa-solid fa-location-dot"></i></div><h6>Address</h6><p class="text-muted-2 mb-0">Shivane,<br>Pune, Maharashtra,<br>India</p></div></div>
-        <div class="col-md-6 col-lg-3 reveal"><div class="contact-card"><div class="icon"><i class="fa-solid fa-phone"></i></div><h6>Phone</h6><p class="mb-0"><a href="tel:+910000000000">+91 00000 00000</a></p><small class="text-muted-2">Mon–Sat · 9:30–18:30</small></div></div>
-        <div class="col-md-6 col-lg-3 reveal"><div class="contact-card"><div class="icon"><i class="fa-solid fa-envelope"></i></div><h6>Email</h6><p class="mb-0"><a href="mailto:info@fluidtech.example">info@fluidtech.example</a></p><small class="text-muted-2">Replies within 24 hrs</small></div></div>
-        <div class="col-md-6 col-lg-3 reveal"><div class="contact-card"><div class="icon" style="background:linear-gradient(135deg,#25d366,#128c7e);"><i class="fa-brands fa-whatsapp"></i></div><h6>WhatsApp</h6><p class="mb-0"><a href="https://wa.me/910000000000" target="_blank" rel="noopener">+91 00000 00000</a></p><small class="text-muted-2">Chat with sales</small></div></div>
+      <div class="row g-4 mb-5">
+
+        <!-- Address -->
+        <div class="col-sm-6 col-lg-3 reveal delay-1">
+          <div class="contact-info-card">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="contact-text">
+              <h5>Office Address</h5>
+              <p>Fluid-Tech<br>Plot No. 42, Sector 3,<br>Bhosari MIDC,<br>Pune – 411026<br>Maharashtra, India</p>
+              <a href="https://maps.google.com/?q=Bhosari+MIDC+Pune" target="_blank" class="d-block mt-2" style="color:var(--accent);font-size:0.8rem;">
+                <i class="fa-solid fa-map-pin me-1"></i> Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="col-sm-6 col-lg-3 reveal delay-2">
+          <div class="contact-info-card">
+            <div class="contact-icon"><i class="fa-solid fa-phone-volume"></i></div>
+            <div class="contact-text">
+              <h5>Call Us</h5>
+              <a href="tel:+912012345678" class="d-block" style="font-size:1.05rem;font-weight:700;">+91 20 1234 5678</a>
+              <a href="tel:+912087654321" class="d-block mt-1">+91 20 8765 4321</a>
+              <p class="contact-sub mt-2">Mon–Sat, 9:00 AM – 6:30 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="col-sm-6 col-lg-3 reveal delay-3">
+          <div class="contact-info-card" style="border-color:rgba(37,211,102,0.2);">
+            <div class="contact-icon" style="background:linear-gradient(135deg,#25D366,#128C7E);">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="contact-text">
+              <h5 style="color:#25D366;">WhatsApp</h5>
+              <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!%20I%20need%20information%20about%20industrial%20equipment." target="_blank" class="d-block" style="font-size:1.05rem;font-weight:700;color:var(--gray-light);">
+                +91 98765 43210
+              </a>
+              <p class="contact-sub mt-2">Quick response within 1 hour</p>
+              <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!" target="_blank" class="d-block mt-2" style="background:linear-gradient(135deg,#25D366,#128C7E);color:white;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;text-align:center;">
+                <i class="fa-brands fa-whatsapp me-1"></i> Chat Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="col-sm-6 col-lg-3 reveal delay-4">
+          <div class="contact-info-card">
+            <div class="contact-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+            <div class="contact-text">
+              <h5>Email Us</h5>
+              <a href="mailto:info@fluidtechpune.com" class="d-block">info@fluidtechpune.com</a>
+              <a href="mailto:sales@fluidtechpune.com" class="d-block mt-1">sales@fluidtechpune.com</a>
+              <p class="contact-sub mt-2">We reply within 24 business hours</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end row -->
+
+      <!-- Map + Quick Form + Hours -->
+      <div class="row g-4 align-items-start">
+
+        <!-- Map -->
+        <div class="col-lg-7 reveal-left">
+          <div class="section-eyebrow mb-3">Find Us</div>
+          <h3 class="section-title mb-3" style="font-size:1.8rem;">Visit Our <span class="accent">Office</span></h3>
+          <div class="divider-brand mb-4"></div>
+          <div class="map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.2648591580866!2d73.84760691489456!3d18.62729598732718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e3b33cefed%3A0x9498f3adb3f3f0d7!2sBhosari%20MIDC%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411026!5e0!3m2!1sen!2sin!4v1699900000000!5m2!1sen!2sin"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Fluid-Tech Office Location">
+            </iframe>
+          </div>
+          <div class="d-flex gap-3 mt-4 flex-wrap">
+            <a href="https://maps.google.com/?q=Bhosari+MIDC+Pune" target="_blank" class="btn-primary-brand" style="font-size:0.88rem;padding:12px 24px;">
+              <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+            </a>
+            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20visit%20your%20office." target="_blank" class="btn-outline-brand" style="font-size:0.88rem;padding:11px 22px;">
+              <i class="fa-brands fa-whatsapp"></i> Ask for Directions
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Hours + Social -->
+        <div class="col-lg-5 reveal-right">
+
+          <!-- Business Hours -->
+          <div class="service-card mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div>
+                <div class="section-eyebrow mb-1">Availability</div>
+                <h4 style="font-size:1.2rem;margin:0;">Business Hours</h4>
+              </div>
+              <span class="open-badge">Open Now</span>
+            </div>
+            <table class="hours-table">
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Monday</td>
+                <td>9:00 AM – 6:30 PM</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Tuesday</td>
+                <td>9:00 AM – 6:30 PM</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Wednesday</td>
+                <td>9:00 AM – 6:30 PM</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Thursday</td>
+                <td>9:00 AM – 6:30 PM</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Friday</td>
+                <td>9:00 AM – 6:30 PM</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Saturday</td>
+                <td>9:00 AM – 4:00 PM</td>
+              </tr>
+              <tr>
+                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--gray);font-size:0.55rem;"></i>Sunday</td>
+                <td style="color:var(--gray);">Closed</td>
+              </tr>
+            </table>
+            <p class="mt-3" style="font-size:0.8rem;color:var(--gray);">
+              <i class="fa-solid fa-circle-info me-1" style="color:var(--accent);"></i>
+              Emergency breakdown support available on WhatsApp for AMC clients.
+            </p>
+          </div>
+
+          <!-- Social Connect -->
+          <div class="service-card">
+            <div class="section-eyebrow mb-2">Social Media</div>
+            <h4 style="font-size:1.1rem;margin-bottom:16px;">Connect With Us</h4>
+            <div class="social-connect-wrap">
+              <a href="https://wa.me/919876543210" target="_blank" class="social-connect-btn whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+              <a href="#" target="_blank" class="social-connect-btn linkedin">
+                <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+              </a>
+              <a href="#" target="_blank" class="social-connect-btn facebook">
+                <i class="fa-brands fa-facebook-f"></i> Facebook
+              </a>
+              <a href="#" target="_blank" class="social-connect-btn youtube">
+                <i class="fa-brands fa-youtube"></i> YouTube
+              </a>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
-  <section class="section bg-soft">
+
+  <!-- QUICK CONTACT FORM -->
+  <section class="section-pad section-dark-2">
     <div class="container">
-      <div class="row g-5">
-        <div class="col-lg-6 reveal">
-          <span class="section-eyebrow">Find us</span>
-          <h2 class="section-title">Visit our facility</h2>
-          <div class="section-divider"></div>
-          <p class="text-muted-2">Drop by our office or manufacturing facility in Shivane, Pune. Please call ahead so we can set time aside for your visit.</p>
-          <div class="map-frame mt-3">
-            <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Shivane,+Pune,+Maharashtra,+India&output=embed"></iframe>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 reveal">
+          <div class="text-center mb-5">
+            <div class="section-eyebrow">Drop a Message</div>
+            <h2 class="section-title">Send Us a <span class="accent">Quick Message</span></h2>
+            <div class="divider-brand mx-auto"></div>
+            <p class="text-gray" style="font-size:0.92rem;">For detailed enquiries and product quotes, use our <a href="enquiry.html" style="color:var(--accent);">Enquiry Form</a>. For quick messages, use this form.</p>
           </div>
-        </div>
-        <div class="col-lg-6 reveal">
-          <div class="form-card">
-            <span class="section-eyebrow">Quick message</span>
-            <h3 class="mb-3">Send us a message</h3>
-            <form class="ft-form" data-validate novalidate>
+          <div class="quick-form-card">
+            <form id="contact-quick-form" novalidate>
               <div class="row g-3">
-                <div class="col-md-6"><label class="form-label">Full Name</label><input type="text" name="name" class="form-control" required><div class="invalid-feedback">Please enter your name.</div></div>
-                <div class="col-md-6"><label class="form-label">Email</label><input type="email" name="email" class="form-control" required><div class="invalid-feedback">Enter a valid email.</div></div>
-                <div class="col-md-6"><label class="form-label">Mobile</label><input type="tel" name="mobile" class="form-control" required><div class="invalid-feedback">Enter a 10-digit number.</div></div>
-                <div class="col-md-6"><label class="form-label">City</label><input type="text" name="city" class="form-control"></div>
-                <div class="col-12"><label class="form-label">Message</label><textarea name="message" rows="4" class="form-control" required></textarea><div class="invalid-feedback">Please add a short message.</div></div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cName">Your Name *</label>
+                  <input type="text" id="cName" name="name" class="form-control" placeholder="Rajesh Kumar" required />
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cPhone">Phone / WhatsApp *</label>
+                  <input type="tel" id="cPhone" name="phone" class="form-control" placeholder="+91 98765 43210" required />
+                  <div class="invalid-feedback">Please enter a valid phone number.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cEmail">Email Address</label>
+                  <input type="email" id="cEmail" name="email" class="form-control" placeholder="you@company.com" />
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="cSubject">Subject</label>
+                  <select id="cSubject" name="subject" class="form-select">
+                    <option value="">Select a topic</option>
+                    <option>Product Enquiry</option>
+                    <option>Technical Support</option>
+                    <option>AMC / Service</option>
+                    <option>Quote Request</option>
+                    <option>Visit Appointment</option>
+                    <option>General Enquiry</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="cMessage">Message *</label>
+                  <textarea id="cMessage" name="message" class="form-control" rows="4" placeholder="Tell us what you need — product type, quantity, application, industry..." required></textarea>
+                  <div class="invalid-feedback">Please enter your message.</div>
+                </div>
+                <div class="col-12 mt-2">
+                  <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                  </button>
+                  <div class="success-message" id="cFormSuccess">
+                    <i class="fa-solid fa-circle-check me-2"></i>
+                    Thank you! Your message has been received. We'll get back to you shortly.
+                  </div>
+                  <div class="error-message" id="cFormError">
+                    <i class="fa-solid fa-circle-exclamation me-2"></i>
+                    Please fill in all required fields correctly.
+                  </div>
+                </div>
               </div>
-              <button type="submit" class="btn btn-ft-primary mt-4 w-100"><i class="fa-solid fa-paper-plane me-2"></i>Send Message</button>
-              <div data-form-status class="d-none"></div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <footer class="ft-footer">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4"><div class="brand"><img src="images/logo.png" alt="Fluid Tech"><span>FluidTech</span></div><p>Industrial flow meters, fuel dispensing &amp; process automation engineered in Pune.</p><div class="socials mt-3"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
-        <div class="col-6 col-lg-2"><h6>Company</h6><ul><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="photo-gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div class="col-6 col-lg-3"><h6>Products</h6><ul><li><a href="products.html#flow-meter">Flow Meter</a></li><li><a href="products.html#fuel-dispenser">Fuel Dispenser</a></li><li><a href="products.html#oil-filling">Oil Filling Machine</a></li><li><a href="products.html#decanter">Decanter Centrifuge</a></li></ul></div>
-        <div class="col-lg-3"><h6>Get in touch</h6><ul><li><i class="fa-solid fa-location-dot me-2"></i>Shivane, Pune, Maharashtra</li><li><i class="fa-solid fa-phone me-2"></i><a href="tel:+910000000000">+91 00000 00000</a></li><li><i class="fa-solid fa-envelope me-2"></i><a href="mailto:info@fluidtech.example">info@fluidtech.example</a></li><li><i class="fa-brands fa-whatsapp me-2"></i><a href="https://wa.me/910000000000">WhatsApp chat</a></li></ul></div>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-7">
+          <h2>Need a Detailed Product Quote?</h2>
+          <p>Use our structured enquiry form to send your complete requirement for accurate technical and commercial quotes.</p>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <div class="d-flex gap-3 justify-content-lg-end flex-wrap">
+            <a href="enquiry.html" class="btn-cta-white"><i class="fa-solid fa-file-alt"></i> Detailed Enquiry</a>
+            <a href="tel:+912012345678" class="btn-cta-outline-white"><i class="fa-solid fa-phone"></i> Call Now</a>
+          </div>
+        </div>
       </div>
-      <div class="copy text-center">&copy; <span id="yr"></span> Fluid Tech. All rights reserved. <script>document.getElementById('yr').textContent=new Date().getFullYear();</script></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+            <span class="brand-name">Fluid-Tech</span>
+          </div>
+          <p class="footer-desc">Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+          <h6 class="footer-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index1.html">Home</a></li>
+            <li><a href="about1.html">About Us</a></li>
+            <li><a href="product1.html">Products</a></li>
+            <li><a href="photo_gallery1.html">Photo Gallery</a></li>
+            <li><a href="video_gallery1.html">Video Gallery</a></li>
+            <li><a href="contact1.html">Contact</a></li>
+            <li><a href="enquiry1.html">Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <h6 class="footer-title">Products</h6>
+          <ul class="footer-links">
+            <li><a href="product1.html#pumps">Centrifugal Pumps</a></li>
+            <li><a href="product1.html#valves">Control &amp; Ball Valves</a></li>
+            <li><a href="product1.html#instruments">Flow Meters</a></li>
+            <li><a href="product1.html#instruments">Pressure Transmitters</a></li>
+            <li><a href="product1.html#automation">PLC / SCADA Systems</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-title">Contact Us</h6>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Fluid-Tech, Near Bhosari MIDC,<br>Pune – 411026, Maharashtra, India</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+912012345678">+91 20 1234 5678</a></div>
+          <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon–Sat: 9:00 AM – 6:30 PM</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
-  <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="float-btn float-wa"><i class="fa-brands fa-whatsapp"></i></a>
-  <button class="float-btn float-top"><i class="fa-solid fa-chevron-up"></i></button>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-btns">
+    <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+    <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!%20I%20need%20a%20quote%20for%20industrial%20equipment." class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script1.js"></script>
+  <script>
+    // Quick contact form validation
+    (function() {
+      const form = document.getElementById('contact-quick-form');
+      if (!form) return;
+      const successMsg = document.getElementById('cFormSuccess');
+      const errorMsg   = document.getElementById('cFormError');
+
+      function validateField(field) {
+        if (!field.hasAttribute('required') && !field.value.trim()) {
+          // optional — allow empty unless email type
+          if (field.type === 'email' && field.value.trim()) {
+            const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+            field.classList.toggle('is-invalid', !ok);
+            field.classList.toggle('is-valid', ok);
+            return ok;
+          }
+          field.classList.remove('is-invalid', 'is-valid');
+          return true;
+        }
+        const val = field.value.trim();
+        let valid = !!val;
+        if (field.type === 'email' && val) valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        if (field.type === 'tel'   && val) valid = /^[+]?[\d\s\-()]{8,15}$/.test(val);
+        field.classList.toggle('is-invalid', !valid);
+        field.classList.toggle('is-valid', valid);
+        return valid;
+      }
+
+      form.querySelectorAll('.form-control').forEach(f => {
+        f.addEventListener('blur', () => validateField(f));
+        f.addEventListener('input', () => { if (f.classList.contains('is-invalid')) validateField(f); });
+      });
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        let allValid = true;
+        form.querySelectorAll('.form-control').forEach(f => { if (!validateField(f)) allValid = false; });
+        if (allValid) {
+          const btn = form.querySelector('.btn-submit');
+          btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Sending...';
+          setTimeout(() => {
+            form.reset();
+            form.querySelectorAll('.form-control').forEach(f => f.classList.remove('is-valid', 'is-invalid'));
+            successMsg.style.display = 'block';
+            setTimeout(() => successMsg.style.display = 'none', 6000);
+            btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i> Send Message';
+          }, 1800);
+        } else {
+          errorMsg.style.display = 'block';
+          setTimeout(() => errorMsg.style.display = 'none', 4000);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

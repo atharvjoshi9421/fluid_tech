@@ -1,158 +1,597 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Photo Gallery — Fluid Tech</title>
-  <meta name="description" content="Photo gallery of Fluid Tech's manufacturing facility, products and installations." />
-  <link rel="icon" href="images/logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-  <link href="style.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fluid-Tech Photo Gallery – View our industrial pumps, valves, flow meters, automation systems and process plant installations." />
+  <meta name="keywords" content="fluid tech gallery, industrial pumps images, valves, flow meters, automation pune" />
+  <title>Photo Gallery | Fluid-Tech – Industrial Process Solutions, Pune</title>
+  <link rel="icon" type="image/webp" href="fluid_tech_logo-removebg-preview.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style1.css" />
+  <style>
+    /* ── Gallery Page Extra Styles ── */
+    .gallery-filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .gallery-filter-tab {
+      padding: 8px 22px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(20,85,164,0.35);
+      background: transparent;
+      color: var(--gray-light);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: 0.04em;
+    }
+    .gallery-filter-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .gallery-filter-tab.active {
+      background: var(--gradient-brand);
+      border-color: transparent;
+      color: var(--white);
+      box-shadow: var(--shadow-brand);
+    }
+    .gallery-masonry {
+      columns: 3;
+      column-gap: 16px;
+    }
+    @media (max-width: 991px) { .gallery-masonry { columns: 2; } }
+    @media (max-width: 575px)  { .gallery-masonry { columns: 1; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(20,85,164,0.2);
+      transition: var(--transition);
+    }
+    .gallery-item:hover {
+      border-color: rgba(0,198,232,0.45);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(6,15,30,0.92));
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-caption {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .gallery-item-cat {
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+    .gallery-zoom-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 52px;
+      height: 52px;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: var(--shadow-brand);
+    }
+    .gallery-item:hover .gallery-zoom-icon { transform: translate(-50%, -50%) scale(1); }
+
+    /* Lightbox */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(6,15,30,0.97);
+      backdrop-filter: blur(24px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      animation: fadeIn 0.3s ease;
+    }
+    .lightbox-modal.active { display: flex; }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    .lightbox-img {
+      max-width: 88vw;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+      border: 1px solid rgba(20,85,164,0.3);
+      animation: zoomIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes zoomIn { from { transform: scale(0.88); opacity:0; } to { transform: scale(1); opacity:1; } }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .lightbox-close:hover { background: rgba(220,53,69,0.4); }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(20,85,164,0.35);
+      border: 1px solid rgba(20,85,164,0.5);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .lightbox-nav:hover { background: var(--primary); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+    }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: var(--gray-light);
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+    /* Category label chips */
+    .gallery-category-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--gradient-brand);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
- 
-  <!-- ============ NAVBAR ============ -->
-   <nav class="ft-navbar navbar navbar-expand-lg">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html"><img src="fluid_tech_logo-removebg-preview.png" alt="Fluid Tech logo" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftNav"><i class="fa-solid fa-bars fa-lg" style="color: var(--ft-primary);"></i></button>
-      <div class="collapse navbar-collapse" id="ftNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-         <li class="nav-item dropdown position-static">
-  <a class="nav-link dropdown-toggle" href="product.html" data-bs-toggle="dropdown">Products &amp; Services</a>
-  <div class="dropdown-menu ft-mega-menu p-4">
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Flow Meter</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Liquid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker loading Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Chemical P.D. Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Acid Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Digital Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Industrial Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Flow Measurement Systems</a></li>
-            <li><a class="dropdown-item px-0" href="#">Oscillating Piston Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">P.d. Flow Transmitter</a></li>
-            <li><a class="dropdown-item px-0" href="#">AD Blue Flow Meter</a></li>
-          </ul>
+      <a class="navbar-brand" href="index1.html">
+        <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+        <div class="brand-text">
+          <span class="brand-name">Fluid-Tech</span>
+          <span class="brand-tagline">Process &amp; Automation</span>
         </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Oil Filling Machine</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Dual Channel Oil Filling Machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Single channel oil filling machine</a></li>
-            <li><a class="dropdown-item px-0" href="#">Brake Oil Filling Machine</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Decanter Centrifuge</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Tanker Decantation system</a></li>
-            <li><a class="dropdown-item px-0" href="#">Tanker Unloading System</a></li>
-            <li><a class="dropdown-item px-0" href="#">Fuel and Solvents Unloading System</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Mobile Fuel Dispenser</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Mobile Fuel Dispenser</a></li>
-            <li><a class="dropdown-item px-0" href="#">4 nozzle dispensing system</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Dispenser</h6>
-          <ul class="list-unstyled">
-            <li><a class="dropdown-item px-0" href="#">Fuel Dispenser stationary unit</a></li>
-            <li><a class="dropdown-item px-0" href="#">Diesel Dispenser Machines</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6">Positive Displacement Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pd Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Pharma PD Flow Meter</a></li>
-          </ul>
-
-          <h6 class="dropdown-header text-dark font-weight-bold px-0 fs-6 mt-4">Fuel Flow Meter</h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="dropdown-item px-0" href="#">Fluid Tech FT2300 25 Positive Displacement Flow Meter</a></li>
-            <li><a class="dropdown-item px-0" href="#">Dm Water Flow Meter</a></li>
-          </ul>
-          
-          <div class="mt-3">
-            <a href="product.html" class="text-decoration-none fw-bold" style="color: var(--ft-primary);">View all categories &rarr;</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</li>
-          <li class="nav-item"><a class="nav-link" href="photo_gallery.html">Photo</a></li>
-          <li class="nav-item"><a class="nav-link" href="video_gallery.html">Video</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-ft-primary" href="enquiry.html">Enquiry</a></li>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+        <ul class="navbar-nav gap-1 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index1.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about1.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="product1.html">Products &amp; Services</a></li>
+          <li class="nav-item"><a class="nav-link active" href="photo_gallery1.html">Photo Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="video_gallery1.html">Videos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact1.html">Contact</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry1.html">Get Enquiry</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header class="page-header">
-    <div class="container">
-      <h1>Photo Gallery</h1>
-      <nav aria-label="breadcrumb"><ol class="breadcrumb mt-2 mb-0"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Photo Gallery</li></ol></nav>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-gradient"></div>
+    <div class="container page-hero-content">
+      <ul class="breadcrumb-custom">
+        <li><a href="index1.html">Home</a></li>
+        <li class="active">Photo Gallery</li>
+      </ul>
+      <h1>Photo <span class="text-accent">Gallery</span></h1>
+      <p>Explore our industrial equipment, process installations, pump systems, valves, instrumentation and automation solutions in action.</p>
     </div>
-  </header>
-  <section class="section">
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="section-pad section-dark">
     <div class="container">
-      <div class="text-center mb-5 reveal">
-        <span class="section-eyebrow">Our work</span>
-        <h2 class="section-title">Products, plant &amp; installations</h2>
-        <p class="text-muted-2 mx-auto" style="max-width:680px;">A look inside our Pune facility and a selection of Fluid Tech equipment in the field. Click any image to view it full-size.</p>
+
+      <!-- Filter Tabs -->
+      <div class="gallery-filter-tabs reveal">
+        <button class="gallery-filter-tab active" data-filter="all">All</button>
+        <button class="gallery-filter-tab" data-filter="pumps">Pumps</button>
+        <button class="gallery-filter-tab" data-filter="valves">Valves</button>
+        <button class="gallery-filter-tab" data-filter="instruments">Instrumentation</button>
+        <button class="gallery-filter-tab" data-filter="automation">Automation</button>
+        <button class="gallery-filter-tab" data-filter="plants">Process Plants</button>
+        <button class="gallery-filter-tab" data-filter="installation">Installations</button>
       </div>
-      <!-- Gallery grid. Drop real images at images/gallery/g1.jpg etc. to replace the SVG placeholders. -->
-      <div class="row g-3">
-        <!-- 12 placeholders using inline SVG data URIs so the gallery looks polished even before assets are added -->
-        <!-- pattern: data-lightbox holds the full-size source -->
-        <!-- Group 1: blue tones -->
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g1.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-gauge-high"></i></div><div class="overlay"><span>Flow Meter</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g2.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-gas-pump"></i></div><div class="overlay"><span>Fuel Dispenser</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g3.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-oil-can"></i></div><div class="overlay"><span>Oil Filling</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g4.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-arrows-spin"></i></div><div class="overlay"><span>Decanter System</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g5.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-truck-fast"></i></div><div class="overlay"><span>Mobile Dispenser</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g6.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-chart-line"></i></div><div class="overlay"><span>Fuel Monitor</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g7.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-flask"></i></div><div class="overlay"><span>Chemical Meter</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g8.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-industry"></i></div><div class="overlay"><span>Facility</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g9.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-cogs"></i></div><div class="overlay"><span>Assembly</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g10.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-vial-circle-check"></i></div><div class="overlay"><span>Calibration</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g11.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-truck-droplet"></i></div><div class="overlay"><span>Tanker System</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
-        <div class="col-6 col-md-4 col-lg-3 reveal"><div class="gallery-item" data-lightbox="images/gallery/g12.jpg"><div class="gallery-placeholder"><i class="fa-solid fa-pills"></i></div><div class="overlay"><span>Pharma PD Meter</span><span class="icon"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></span></div></div></div>
+
+      <!-- Masonry Grid -->
+      <div class="gallery-masonry reveal" id="galleryGrid">
+
+        <!-- Pumps -->
+        <div class="gallery-item" data-category="pumps">
+          <span class="gallery-category-label">Pumps</span>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Centrifugal Pump Installation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Pumps</div>
+            <div class="gallery-item-caption">Centrifugal Pump – Chemical Industry</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="plants">
+          <span class="gallery-category-label">Process Plants</span>
+          <img src="https://images.unsplash.com/photo-1565008576549-57569a49a85a?w=800&q=80" alt="Industrial Process Plant" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Process Plants</div>
+            <div class="gallery-item-caption">Industrial Process Plant – Pune MIDC</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="instruments">
+          <span class="gallery-category-label">Instrumentation</span>
+          <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80" alt="Flow Meter Installation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Instrumentation</div>
+            <div class="gallery-item-caption">Electromagnetic Flow Meter – Water Treatment</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="automation">
+          <span class="gallery-category-label">Automation</span>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="PLC Control Panel" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Automation</div>
+            <div class="gallery-item-caption">PLC Control Panel – Pharmaceutical Plant</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="valves">
+          <span class="gallery-category-label">Valves</span>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Industrial Valve Assembly" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Valves</div>
+            <div class="gallery-item-caption">Ball Valve Assembly – Pipeline</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="installation">
+          <span class="gallery-category-label">Installation</span>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="On-site Installation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Installation</div>
+            <div class="gallery-item-caption">On-site Commissioning – Food Industry</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="pumps">
+          <span class="gallery-category-label">Pumps</span>
+          <img src="https://images.unsplash.com/photo-1563455765-9b2de95a7e0c?w=800&q=80" alt="Gear Pump" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Pumps</div>
+            <div class="gallery-item-caption">Gear Pump – Viscous Fluid Application</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="instruments">
+          <span class="gallery-category-label">Instrumentation</span>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Pressure Transmitter" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Instrumentation</div>
+            <div class="gallery-item-caption">Pressure Transmitter – Process Line</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="plants">
+          <span class="gallery-category-label">Process Plants</span>
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" alt="Chemical Process Plant" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Process Plants</div>
+            <div class="gallery-item-caption">Chemical Processing Facility</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="automation">
+          <span class="gallery-category-label">Automation</span>
+          <img src="https://images.unsplash.com/photo-1612235253836-a7d714bc0e72?w=800&q=80" alt="SCADA System" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Automation</div>
+            <div class="gallery-item-caption">SCADA Monitoring Station</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="valves">
+          <span class="gallery-category-label">Valves</span>
+          <img src="https://images.unsplash.com/photo-1565108520693-c4ebc04cefed?w=800&q=80" alt="Butterfly Valve" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Valves</div>
+            <div class="gallery-item-caption">Butterfly Valve – Large Diameter Pipeline</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="installation">
+          <span class="gallery-category-label">Installation</span>
+          <img src="https://images.unsplash.com/photo-1565008576549-57569a49a85a?w=600&q=80" alt="Pump Installation" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Installation</div>
+            <div class="gallery-item-caption">Pump Skid Installation – Water Treatment</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="instruments">
+          <span class="gallery-category-label">Instrumentation</span>
+          <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="Level Sensor" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Instrumentation</div>
+            <div class="gallery-item-caption">Radar Level Transmitter – Storage Tank</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="pumps">
+          <span class="gallery-category-label">Pumps</span>
+          <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&q=80" alt="Diaphragm Pump" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Pumps</div>
+            <div class="gallery-item-caption">AODD Pump – Chemical Transfer</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+        <div class="gallery-item" data-category="plants">
+          <span class="gallery-category-label">Process Plants</span>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="ETP Plant" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-cat">Process Plants</div>
+            <div class="gallery-item-caption">ETP / STP – Effluent Treatment Plant</div>
+          </div>
+          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+        </div>
+
+      </div><!-- end gallery-masonry -->
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Image Lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery Image" />
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="container position-relative" style="z-index:1;">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-7">
+          <h2>Interested in Our Industrial<br>Equipment Solutions?</h2>
+          <p>Send us your requirements and get a personalised quote from our technical team.</p>
+        </div>
+        <div class="col-lg-5 text-lg-end">
+          <div class="d-flex gap-3 justify-content-lg-end flex-wrap">
+            <a href="enquiry.html" class="btn-cta-white"><i class="fa-solid fa-paper-plane"></i> Send Enquiry</a>
+            <a href="video-gallery.html" class="btn-cta-outline-white"><i class="fa-solid fa-circle-play"></i> Watch Videos</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <footer class="ft-footer">
+
+  <!-- FOOTER -->
+  <footer class="footer">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4"><div class="brand"><img src="images/logo.png" alt="Fluid Tech"><span>FluidTech</span></div><p>Industrial flow meters, fuel dispensing &amp; process automation engineered in Pune.</p><div class="socials mt-3"><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-linkedin-in"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a></div></div>
-        <div class="col-6 col-lg-2"><h6>Company</h6><ul><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="photo-gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div class="col-6 col-lg-3"><h6>Products</h6><ul><li><a href="products.html#flow-meter">Flow Meter</a></li><li><a href="products.html#fuel-dispenser">Fuel Dispenser</a></li><li><a href="products.html#oil-filling">Oil Filling Machine</a></li><li><a href="products.html#decanter">Decanter Centrifuge</a></li></ul></div>
-        <div class="col-lg-3"><h6>Get in touch</h6><ul><li><i class="fa-solid fa-location-dot me-2"></i>Shivane, Pune, Maharashtra</li><li><i class="fa-solid fa-phone me-2"></i><a href="tel:+910000000000">+91 00000 00000</a></li><li><i class="fa-solid fa-envelope me-2"></i><a href="mailto:info@fluidtech.example">info@fluidtech.example</a></li><li><i class="fa-brands fa-whatsapp me-2"></i><a href="https://wa.me/910000000000">WhatsApp chat</a></li></ul></div>
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+            <span class="brand-name">Fluid-Tech</span>
+          </div>
+          <p class="footer-desc">Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+          <h6 class="footer-title">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="index1.html">Home</a></li>
+            <li><a href="about1.html">About Us</a></li>
+            <li><a href="product1.html">Products</a></li>
+            <li><a href="photo_gallery1.html">Photo Gallery</a></li>
+            <li><a href="video_gallery1.html">Video Gallery</a></li>
+            <li><a href="contact1.html">Contact</a></li>
+            <li><a href="enquiry1.html">Enquiry</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <h6 class="footer-title">Products</h6>
+          <ul class="footer-links">
+            <li><a href="product1.html#pumps">Centrifugal Pumps</a></li>
+            <li><a href="product1.html#valves">Control &amp; Ball Valves</a></li>
+            <li><a href="product1.html#instruments">Flow Meters</a></li>
+            <li><a href="product1.html#instruments">Pressure Transmitters</a></li>
+            <li><a href="product1.html#automation">PLC / SCADA Systems</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-title">Contact Us</h6>
+          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Fluid-Tech, Near Bhosari MIDC,<br>Pune – 411026, Maharashtra, India</span></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+912012345678">+91 20 1234 5678</a></div>
+          <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a></div>
+          <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon–Sat: 9:00 AM – 6:30 PM</span></div>
+        </div>
       </div>
-      <div class="copy text-center">&copy; <span id="yr"></span> Fluid Tech. All rights reserved. <script>document.getElementById('yr').textContent=new Date().getFullYear();</script></div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
-  <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="float-btn float-wa"><i class="fa-brands fa-whatsapp"></i></a>
-  <button class="float-btn float-top"><i class="fa-solid fa-chevron-up"></i></button>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="floating-btns">
+    <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+    <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!%20I%20need%20a%20quote%20for%20industrial%20equipment." class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script1.js"></script>
+  <script>
+    // Gallery Filter
+    document.querySelectorAll('.gallery-filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightboxImg');
+    const lightboxCap  = document.getElementById('lightboxCaption');
+    const lightboxCnt  = document.getElementById('lightboxCounter');
+    let currentIdx = 0;
+    let visibleItems = [];
+
+    function getVisibleItems() {
+      return Array.from(galleryItems).filter(el => el.style.display !== 'none');
+    }
+
+    function openLightbox(idx) {
+      visibleItems = getVisibleItems();
+      currentIdx = idx;
+      updateLightbox();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightbox() {
+      const item = visibleItems[currentIdx];
+      lightboxImg.src = item.querySelector('img').src;
+      lightboxImg.alt = item.querySelector('img').alt;
+      lightboxCap.textContent = item.querySelector('.gallery-item-caption')?.textContent || '';
+      lightboxCnt.textContent = (currentIdx + 1) + ' / ' + visibleItems.length;
+    }
+
+    galleryItems.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        visibleItems = getVisibleItems();
+        const vIdx = visibleItems.indexOf(item);
+        openLightbox(vIdx >= 0 ? vIdx : 0);
+      });
+    });
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => {
+      currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
+      updateLightbox();
+    });
+    document.getElementById('lightboxNext').addEventListener('click', () => {
+      currentIdx = (currentIdx + 1) % visibleItems.length;
+      updateLightbox();
+    });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') { currentIdx = (currentIdx-1+visibleItems.length)%visibleItems.length; updateLightbox(); }
+      if (e.key === 'ArrowRight') { currentIdx = (currentIdx+1)%visibleItems.length; updateLightbox(); }
+    });
+  </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
   <link rel="icon" type="image/webp" href="fluid_tech_logo-removebg-preview.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style1.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     /* Enquiry form styles */
     .enquiry-form-card {
@@ -314,28 +314,32 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
+   <!-- ════════════════════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════════════════ -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="index1.html">
+      <a class="navbar-brand" href="index.html">
         <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
         <div class="brand-text">
           <span class="brand-name">Fluid-Tech</span>
           <span class="brand-tagline">Process &amp; Automation</span>
         </div>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse justify-content-end" id="mainNav">
         <ul class="navbar-nav gap-1 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index1.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about1.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="product1.html">Products &amp; Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="gallery.html">Photo Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="video-gallery.html">Videos</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.html">Products &amp; Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="photo_gallery.html">Photo Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="video_gallery.html">Videos</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn active" href="enquiry.html">Get Enquiry</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry.html">Get Enquiry</a></li>
         </ul>
       </div>
     </div>
@@ -346,7 +350,7 @@
     <div class="page-hero-gradient"></div>
     <div class="container page-hero-content">
       <ul class="breadcrumb-custom">
-        <li><a href="index1.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="active">Get Enquiry</li>
       </ul>
       <h1>Send Your <span class="text-accent">Enquiry</span></h1>
@@ -606,7 +610,7 @@
                 <a href="https://wa.me/919876543210?text=Hi%2C%20I%20just%20submitted%20an%20enquiry%20on%20your%20website." target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:white;padding:12px 24px;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;">
                   <i class="fa-brands fa-whatsapp"></i> Follow Up on WhatsApp
                 </a>
-                <a href="index1.html" class="btn-outline-brand" style="padding:11px 22px;font-size:0.9rem;">
+                <a href="index.html" class="btn-outline-brand" style="padding:11px 22px;font-size:0.9rem;">
                   <i class="fa-solid fa-house"></i> Back to Home
                 </a>
               </div>
@@ -690,34 +694,21 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section reveal">
-    <div class="container position-relative" style="z-index:1;">
-      <div class="row align-items-center gy-4">
-        <div class="col-lg-7">
-          <h2>Still Have Questions?</h2>
-          <p>Talk to our engineering team directly — we're happy to discuss your process requirements in detail.</p>
-        </div>
-        <div class="col-lg-5 text-lg-end">
-          <div class="d-flex gap-3 justify-content-lg-end flex-wrap">
-            <a href="contact.html" class="btn-cta-white"><i class="fa-solid fa-map-location-dot"></i> Contact Us</a>
-            <a href="product1.html" class="btn-cta-outline-white"><i class="fa-solid fa-cubes"></i> View Products</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- ════════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
       <div class="row g-5">
+        <!-- Brand -->
         <div class="col-lg-4 col-md-6">
           <div class="footer-brand">
             <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
             <span class="brand-name">Fluid-Tech</span>
           </div>
-          <p class="footer-desc">Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.</p>
+          <p class="footer-desc">
+            Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.
+          </p>
           <div class="footer-social">
             <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -726,55 +717,79 @@
             <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
+
+        <!-- Quick Links -->
         <div class="col-lg-2 col-sm-6">
           <h6 class="footer-title">Quick Links</h6>
           <ul class="footer-links">
-            <li><a href="index1.html">Home</a></li>
-            <li><a href="about1.html">About Us</a></li>
-            <li><a href="product1.html">Products</a></li>
-            <li><a href="photo_gallery1.html">Photo Gallery</a></li>
-            <li><a href="video_gallery1.html">Video Gallery</a></li>
-            <li><a href="contact1.html">Contact</a></li>
-            <li><a href="enquiry1.html">Enquiry</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="photo_gallery.html">Photo Gallery</a></li>
+            <li><a href="video_gallery.html">Video Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="enquiry.html">Enquiry</a></li>
           </ul>
         </div>
+
+        <!-- Products -->
         <div class="col-lg-3 col-sm-6">
           <h6 class="footer-title">Products</h6>
           <ul class="footer-links">
-            <li><a href="product1.html#pumps">Centrifugal Pumps</a></li>
-            <li><a href="product1.html#valves">Control &amp; Ball Valves</a></li>
-            <li><a href="product1.html#instruments">Flow Meters</a></li>
-            <li><a href="product1.html#instruments">Pressure Transmitters</a></li>
-            <li><a href="product1.html#automation">PLC / SCADA Systems</a></li>
+            <li><a href="products.html#pumps">Centrifugal Pumps</a></li>
+            <li><a href="products.html#pumps">Gear &amp; Diaphragm Pumps</a></li>
+            <li><a href="products.html#valves">Control &amp; Ball Valves</a></li>
+            <li><a href="products.html#instruments">Flow Meters</a></li>
+            <li><a href="products.html#instruments">Pressure Transmitters</a></li>
+            <li><a href="products.html#automation">PLC / SCADA Systems</a></li>
           </ul>
         </div>
+
+        <!-- Contact -->
         <div class="col-lg-3 col-md-6">
           <h6 class="footer-title">Contact Us</h6>
-          <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Fluid-Tech, Near Bhosari MIDC,<br>Pune – 411026, Maharashtra, India</span></div>
-          <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+912012345678">+91 20 1234 5678</a></div>
-          <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a></div>
-          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a></div>
-          <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon–Sat: 9:00 AM – 6:30 PM</span></div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Fluid-Tech, Near Bhosari MIDC,<br>Pune – 411026, Maharashtra, India</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+912012345678">+91 20 1234 5678</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-brands fa-whatsapp"></i>
+            <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Mon–Sat: 9:00 AM – 6:30 PM</span>
+          </div>
         </div>
       </div>
+
       <div class="footer-bottom">
         <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
+          <a href="sitemap.xml">Sitemap</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- FLOATING BUTTONS -->
-  <div class="floating-btns">
-    <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
-    <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!%20I%20need%20a%20quote%20for%20industrial%20equipment." class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat"><i class="fa-brands fa-whatsapp"></i></a>
-  </div>
+ <div class="floating-btns">
+  <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+  <a href="contact.html" class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat" onclick="event.stopPropagation();"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script1.js"></script>
+  <script src="script.js"></script>
   <script>
     // ── Product Checkboxes ─────────────────────────────────
     document.querySelectorAll('.product-check-item').forEach(item => {

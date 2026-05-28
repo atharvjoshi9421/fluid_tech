@@ -11,160 +11,210 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Contact Info Cards */
-    .contact-info-card {
-      background: var(--dark-3);
-      border: 1px solid rgba(20,85,164,0.22);
-      border-radius: var(--radius-lg);
-      padding: 28px 26px;
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-      transition: var(--transition);
-      height: 100%;
-    }
-    .contact-info-card:hover {
-      border-color: rgba(0,198,232,0.4);
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
-    .contact-icon {
-      width: 54px;
-      height: 54px;
-      background: var(--gradient-brand);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      flex-shrink: 0;
-      box-shadow: var(--shadow-brand);
-    }
-    .contact-text h5 {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .contact-text p, .contact-text a {
-      font-size: 0.92rem;
-      color: var(--gray-light);
-      margin: 0;
-      line-height: 1.65;
-      transition: color 0.25s;
-    }
-    .contact-text a:hover { color: var(--accent); }
-    .contact-text .contact-sub {
-      font-size: 0.78rem;
-      color: var(--gray);
-      margin-top: 4px;
-    }
+   /* ============================================================
+   MODERN CONTACT HUB UI
+   ============================================================ */
+:root {
+  --brand-primary: #1455a4;
+  --brand-secondary: #00c6e8;
+  --brand-dark: #0f172a;
+  --text-muted: #64748b;
+  --radius-xl: 1.5rem;
+}
 
-    /* Map */
-    .map-wrap {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid rgba(20,85,164,0.25);
-      box-shadow: var(--shadow-md);
-    }
-    .map-wrap iframe {
-      width: 100%;
-      height: 420px;
-      border: none;
-      display: block;
-      filter: invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85);
-    }
+.contact-section {
+  padding: 5rem 0;
+  background-color: #f8fafc;
+  font-family: 'Inter', system-ui, sans-serif; /* Adjust to your font */
+}
 
-    /* Business Hours Table */
-    .hours-table {
-      width: 100%;
-    }
-    .hours-table tr {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .hours-table tr:last-child { border-bottom: none; }
-    .hours-table td {
-      padding: 10px 0;
-      font-size: 0.87rem;
-      color: var(--gray);
-    }
-    .hours-table td:last-child {
-      text-align: right;
-      color: var(--gray-light);
-      font-weight: 500;
-    }
-    .hours-today td { color: var(--accent) !important; }
-    .open-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(40,167,69,0.15);
-      border: 1px solid rgba(40,167,69,0.3);
-      color: #66d47d;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 100px;
-      letter-spacing: 0.06em;
-    }
-    .open-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #66d47d;
-      animation: blinkDot 1.5s ease-in-out infinite;
-    }
-    @keyframes blinkDot {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
+/* Typography & Titles */
+.section-eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--brand-primary);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--brand-dark);
+}
+.accent-text {
+  color: var(--brand-secondary);
+}
+.divider-brand {
+  height: 4px;
+  width: 60px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  border-radius: 4px;
+  margin-top: 1rem;
+}
 
-    /* Social Connect */
-    .social-connect-wrap {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .social-connect-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: var(--transition);
-      border: 1.5px solid;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .social-connect-btn.whatsapp { border-color: #25D366; color: #25D366; }
-    .social-connect-btn.whatsapp:hover { background: #25D366; color: white; }
-    .social-connect-btn.linkedin { border-color: #0A66C2; color: #0A66C2; }
-    .social-connect-btn.linkedin:hover { background: #0A66C2; color: white; }
-    .social-connect-btn.facebook { border-color: #1877F2; color: #1877F2; }
-    .social-connect-btn.facebook:hover { background: #1877F2; color: white; }
-    .social-connect-btn.youtube { border-color: #FF0000; color: #FF0000; }
-    .social-connect-btn.youtube:hover { background: #FF0000; color: white; }
+/* Contact Hub Split Wrapper */
+.contact-hub-wrapper {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #fff;
+}
 
-    /* Quick contact form card */
-    .quick-form-card {
-      background: var(--dark-2);
-      border: 1px solid rgba(20,85,164,0.25);
-      border-radius: var(--radius-lg);
-      padding: 36px;
-    }
-    .quick-form-card .form-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--gray-light);
-      margin-bottom: 7px;
-    }
+/* Left Panel - Dark / Brand Gradient */
+.contact-info-panel {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, #0c386d 100%);
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.text-light-opacity {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+.contact-detail-item .icon-box {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.contact-detail-item:hover .icon-box {
+  background: var(--brand-secondary);
+  transform: translateY(-3px);
+}
+.contact-detail-item .detail-text a, 
+.contact-detail-item .detail-text p {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+.contact-detail-item .detail-text a:hover {
+  color: var(--brand-secondary);
+}
+
+/* Social Circles */
+.social-links-modern {
+  display: flex;
+  gap: 1rem;
+}
+.social-circle {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+.social-circle:hover {
+  transform: translateY(-4px);
+  color: #fff;
+}
+.social-circle.whatsapp:hover { background: #25D366; }
+.social-circle.linkedin:hover { background: #0A66C2; }
+.social-circle.facebook:hover { background: #1877F2; }
+
+/* Right Panel - Modern Form */
+.contact-form-panel {
+  padding: 4rem 3rem;
+}
+.modern-form .form-floating label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.modern-form .form-control,
+.modern-form .form-select {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+.modern-form .form-control:focus,
+.modern-form .form-select:focus {
+  background-color: #fff;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 4px rgba(20, 85, 164, 0.1);
+}
+
+.btn-modern-submit {
+  background: var(--brand-primary);
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+.btn-modern-submit:hover {
+  background: var(--brand-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+}
+
+/* Bottom Section: Map & Hours */
+.map-container {
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 100%;
+  min-height: 350px;
+}
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.hours-card {
+  padding: 2.5rem;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+}
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #198754;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(25, 135, 84, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .contact-info-panel, .contact-form-panel {
+    padding: 3rem 2rem;
+  }
+}
   </style>
 </head>
 <body>
@@ -214,237 +264,162 @@
   </section>
 
   <!-- CONTACT INFO CARDS -->
-  <section class="section-pad section-dark">
-    <div class="container">
-      <div class="row g-4 mb-5">
-
-        <!-- Address -->
-        <div class="col-sm-6 col-lg-3 reveal delay-1">
-          <div class="contact-info-card">
-            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="contact-text">
-              <h5>Office Address</h5>
-              <p>Fluid-Tech<br>Plot No. 42, Sector 3,<br>Bhosari MIDC,<br>Pune – 411026<br>Maharashtra, India</p>
-              <a href="https://maps.google.com/?q=Bhosari+MIDC+Pune" target="_blank" class="d-block mt-2" style="color:var(--accent);font-size:0.8rem;">
-                <i class="fa-solid fa-map-pin me-1"></i> Get Directions
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phone -->
-        <div class="col-sm-6 col-lg-3 reveal delay-2">
-          <div class="contact-info-card">
-            <div class="contact-icon"><i class="fa-solid fa-phone-volume"></i></div>
-            <div class="contact-text">
-              <h5>Call Us</h5>
-              <a href="tel:+912012345678" class="d-block" style="font-size:1.05rem;font-weight:700;">+91 20 1234 5678</a>
-              <a href="tel:+912087654321" class="d-block mt-1">+91 20 8765 4321</a>
-              <p class="contact-sub mt-2">Mon–Sat, 9:00 AM – 6:30 PM</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- WhatsApp -->
-        <div class="col-sm-6 col-lg-3 reveal delay-3">
-          <div class="contact-info-card" style="border-color:rgba(37,211,102,0.2);">
-            <div class="contact-icon" style="background:linear-gradient(135deg,#25D366,#128C7E);">
-              <i class="fa-brands fa-whatsapp"></i>
-            </div>
-            <div class="contact-text">
-              <h5 style="color:#25D366;">WhatsApp</h5>
-              <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!%20I%20need%20information%20about%20industrial%20equipment." target="_blank" class="d-block" style="font-size:1.05rem;font-weight:700;color:var(--gray-light);">
-                +91 98765 43210
-              </a>
-              <p class="contact-sub mt-2">Quick response within 1 hour</p>
-              <a href="https://wa.me/919876543210?text=Hello%20Fluid-Tech!" target="_blank" class="d-block mt-2" style="background:linear-gradient(135deg,#25D366,#128C7E);color:white;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;text-align:center;">
-                <i class="fa-brands fa-whatsapp me-1"></i> Chat Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Email -->
-        <div class="col-sm-6 col-lg-3 reveal delay-4">
-          <div class="contact-info-card">
-            <div class="contact-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
-            <div class="contact-text">
-              <h5>Email Us</h5>
-              <a href="mailto:info@fluidtechpune.com" class="d-block">info@fluidtechpune.com</a>
-              <a href="mailto:sales@fluidtechpune.com" class="d-block mt-1">sales@fluidtechpune.com</a>
-              <p class="contact-sub mt-2">We reply within 24 business hours</p>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- end row -->
-
-      <!-- Map + Quick Form + Hours -->
-      <div class="row g-4 align-items-start">
-
-        <!-- Map -->
-        <div class="col-lg-7 reveal-left">
-          <div class="section-eyebrow mb-3">Find Us</div>
-          <h3 class="section-title mb-3" style="font-size:1.8rem;">Visit Our <span class="accent">Office</span></h3>
-          <div class="divider-brand mb-4"></div>
-          <div class="map-wrap">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.2648591580866!2d73.84760691489456!3d18.62729598732718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e3b33cefed%3A0x9498f3adb3f3f0d7!2sBhosari%20MIDC%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411026!5e0!3m2!1sen!2sin!4v1699900000000!5m2!1sen!2sin"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Fluid-Tech Office Location">
-            </iframe>
-          </div>
-          <div class="d-flex gap-3 mt-4 flex-wrap">
-            <a href="https://maps.google.com/?q=Bhosari+MIDC+Pune" target="_blank" class="btn-primary-brand" style="font-size:0.88rem;padding:12px 24px;">
-              <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
-            </a>
-            <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20visit%20your%20office." target="_blank" class="btn-outline-brand" style="font-size:0.88rem;padding:11px 22px;">
-              <i class="fa-brands fa-whatsapp"></i> Ask for Directions
-            </a>
-          </div>
-        </div>
-
-        <!-- Right Column: Hours + Social -->
-        <div class="col-lg-5 reveal-right">
-
-          <!-- Business Hours -->
-          <div class="service-card mb-4">
-            <div class="d-flex align-items-center justify-content-between mb-3">
-              <div>
-                <div class="section-eyebrow mb-1">Availability</div>
-                <h4 style="font-size:1.2rem;margin:0;">Business Hours</h4>
-              </div>
-              <span class="open-badge">Open Now</span>
-            </div>
-            <table class="hours-table">
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Monday</td>
-                <td>9:00 AM – 6:30 PM</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Tuesday</td>
-                <td>9:00 AM – 6:30 PM</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Wednesday</td>
-                <td>9:00 AM – 6:30 PM</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Thursday</td>
-                <td>9:00 AM – 6:30 PM</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Friday</td>
-                <td>9:00 AM – 6:30 PM</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--accent);font-size:0.55rem;"></i>Saturday</td>
-                <td>9:00 AM – 4:00 PM</td>
-              </tr>
-              <tr>
-                <td><i class="fa-solid fa-circle-dot me-2" style="color:var(--gray);font-size:0.55rem;"></i>Sunday</td>
-                <td style="color:var(--gray);">Closed</td>
-              </tr>
-            </table>
-            <p class="mt-3" style="font-size:0.8rem;color:var(--gray);">
-              <i class="fa-solid fa-circle-info me-1" style="color:var(--accent);"></i>
-              Emergency breakdown support available on WhatsApp for AMC clients.
-            </p>
-          </div>
-
-          <!-- Social Connect -->
-          <div class="service-card">
-            <div class="section-eyebrow mb-2">Social Media</div>
-            <h4 style="font-size:1.1rem;margin-bottom:16px;">Connect With Us</h4>
-            <div class="social-connect-wrap">
-              <a href="https://wa.me/919876543210" target="_blank" class="social-connect-btn whatsapp">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </a>
-              <a href="#" target="_blank" class="social-connect-btn linkedin">
-                <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-              </a>
-              <a href="#" target="_blank" class="social-connect-btn facebook">
-                <i class="fa-brands fa-facebook-f"></i> Facebook
-              </a>
-              <a href="#" target="_blank" class="social-connect-btn youtube">
-                <i class="fa-brands fa-youtube"></i> YouTube
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
+  <!-- CONTACT HUB SECTION -->
+<section class="contact-section">
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="text-center mb-5 reveal">
+      <span class="section-eyebrow">Get In Touch</span>
+      <h2 class="section-title">Let's Talk About <span class="accent-text">Your Project</span></h2>
+      <div class="divider-brand mx-auto"></div>
     </div>
-  </section>
 
-  <!-- QUICK CONTACT FORM -->
-  <section class="section-pad section-dark-2">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 reveal">
-          <div class="text-center mb-5">
-            <div class="section-eyebrow">Drop a Message</div>
-            <h2 class="section-title">Send Us a <span class="accent">Quick Message</span></h2>
-            <div class="divider-brand mx-auto"></div>
-            <p class="text-gray" style="font-size:0.92rem;">For detailed enquiries and product quotes, use our <a href="contact.html" style="color:var(--accent);">Enquiry Form</a>. For quick messages, use this form.</p>
+    <!-- Main Split-Panel Card -->
+    <div class="contact-hub-wrapper shadow-lg reveal">
+      <div class="row g-0">
+        
+        <!-- Left Panel: Contact Info (Dark/Brand) -->
+        <div class="col-lg-5 contact-info-panel text-white">
+          <h4 class="mb-4">Contact Information</h4>
+          <p class="mb-5 text-light-opacity">Fill out the form, or reach out to us directly through the channels below. We typically respond within a few hours.</p>
+
+          <div class="contact-detail-item mb-4">
+            <div class="icon-box"><i class="fa-solid fa-phone-volume"></i></div>
+            <div class="detail-text">
+              <a href="tel:+912012345678">+91 20 1234 5678</a>
+              <a href="tel:+912087654321">+91 20 8765 4321</a>
+            </div>
           </div>
-          <div class="quick-form-card">
-            <form id="contact-quick-form" novalidate>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label" for="cName">Your Name *</label>
-                  <input type="text" id="cName" name="name" class="form-control" placeholder="Rajesh Kumar" required />
-                  <div class="invalid-feedback">Please enter your name.</div>
+
+          <div class="contact-detail-item mb-4">
+            <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+            <div class="detail-text">
+              <a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a>
+              <a href="mailto:sales@fluidtechpune.com">sales@fluidtechpune.com</a>
+            </div>
+          </div>
+
+          <div class="contact-detail-item mb-5">
+            <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="detail-text">
+              <p class="mb-0">Plot No. 42, Sector 3, Bhosari MIDC<br>Pune – 411026, Maharashtra</p>
+            </div>
+          </div>
+
+          <!-- Socials -->
+          <div class="social-links-modern mt-auto">
+            <a href="https://wa.me/919876543210" class="social-circle whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" class="social-circle linkedin" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-circle facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <!-- Right Panel: Form (Light) -->
+        <div class="col-lg-7 contact-form-panel bg-white">
+          <form id="contact-quick-form" class="modern-form" novalidate>
+            <div class="row g-4">
+              
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="cName" placeholder="Name" required>
+                  <label for="cName"></label>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label" for="cPhone">Phone / WhatsApp *</label>
-                  <input type="tel" id="cPhone" name="phone" class="form-control" placeholder="+91 98765 43210" required />
-                  <div class="invalid-feedback">Please enter a valid phone number.</div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="tel" class="form-control" id="cPhone" placeholder="Phone" required>
+                  <label for="cPhone"></label>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label" for="cEmail">Email Address</label>
-                  <input type="email" id="cEmail" name="email" class="form-control" placeholder="you@company.com" />
-                  <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="cEmail" placeholder="Email">
+                  <label for="cEmail"></label>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label" for="cSubject">Subject</label>
-                  <select id="cSubject" name="subject" class="form-select">
-                    <option value="">Select a topic</option>
-                    <option>Product Enquiry</option>
-                    <option>Technical Support</option>
-                    <option>AMC / Service</option>
-                    <option>Quote Request</option>
-                    <option>Visit Appointment</option>
-                    <option>General Enquiry</option>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <select class="form-select" id="cSubject" aria-label="Subject">
+                    <option selected disabled value="">Select a topic</option>
+                    <option value="1">Product Enquiry</option>
+                    <option value="2">Technical Support</option>
+                    <option value="3">AMC / Service</option>
+                    <option value="4">General Enquiry</option>
                   </select>
-                </div>
-                <div class="col-12">
-                  <label class="form-label" for="cMessage">Message *</label>
-                  <textarea id="cMessage" name="message" class="form-control" rows="4" placeholder="Tell us what you need — product type, quantity, application, industry..." required></textarea>
-                  <div class="invalid-feedback">Please enter your message.</div>
-                </div>
-                <div class="col-12 mt-2">
-                  <button type="submit" class="btn-submit">
-                    <i class="fa-solid fa-paper-plane me-2"></i> Send Message
-                  </button>
-                  <div class="success-message" id="cFormSuccess">
-                    <i class="fa-solid fa-circle-check me-2"></i>
-                    Thank you! Your message has been received. We'll get back to you shortly.
-                  </div>
-                  <div class="error-message" id="cFormError">
-                    <i class="fa-solid fa-circle-exclamation me-2"></i>
-                    Please fill in all required fields correctly.
-                  </div>
+                  <label for="cSubject"></label>
                 </div>
               </div>
-            </form>
+
+              <div class="col-12">
+                <div class="form-floating">
+                  <textarea class="form-control" id="cMessage" placeholder="Message" style="height: 120px" required></textarea>
+                  <label for="cMessage"></label>
+                </div>
+              </div>
+
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn-modern-submit w-100">
+                  Send Message <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map & Hours Section -->
+    <div class="row g-4 mt-5">
+      <!-- Map -->
+      <div class="col-lg-8 reveal">
+        <div class="map-container shadow-sm">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.2648591580866!2d73.84760691489456!3d18.62729598732718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e3b33cefed%3A0x9498f3adb3f3f0d7!2sBhosari%20MIDC%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411026!5e0!3m2!1sen!2sin!4v1699900000000!5m2!1sen!2sin" 
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Business Hours Minimal Card -->
+      <div class="col-lg-4 reveal">
+        <div class="hours-card shadow-sm h-100 bg-white">
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <h5 class="mb-0 fw-bold">Business Hours</h5>
+            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2 rounded-pill">
+              <span class="pulse-dot me-1"></span> Open Now
+            </span>
+          </div>
+          
+          <ul class="list-unstyled hours-list">
+            <li class="d-flex justify-content-between mb-3">
+              <span class="text-muted">Monday – Friday</span>
+              <span class="fw-medium text-dark">9:00 AM – 6:30 PM</span>
+            </li>
+            <li class="d-flex justify-content-between mb-3">
+              <span class="text-muted">Saturday</span>
+              <span class="fw-medium text-dark">9:00 AM – 4:00 PM</span>
+            </li>
+            <li class="d-flex justify-content-between pt-3 border-top">
+              <span class="text-muted">Sunday</span>
+              <span class="fw-bold text-danger">Closed</span>
+            </li>
+          </ul>
+
+          <div class="alert alert-info mt-4 mb-0 border-0 bg-primary bg-opacity-10 text-primary d-flex align-items-start">
+            <i class="fa-solid fa-headset mt-1 me-2"></i>
+            <small>24/7 Emergency support available via WhatsApp for our AMC clients.</small>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- ════════════════════════════════════════════════════════
        FOOTER

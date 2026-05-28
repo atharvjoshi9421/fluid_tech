@@ -3,244 +3,429 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fluid-Tech Photo Gallery – View our industrial pumps, valves, flow meters, automation systems and process plant installations." />
-  <meta name="keywords" content="fluid tech gallery, industrial pumps images, valves, flow meters, automation pune" />
+  <meta name="description" content="Fluid-Tech Photo Gallery – Flow meters, filling machines, fuel dispensers, unloading systems and monitoring solutions, Pune." />
+  <meta name="keywords" content="fluid tech gallery, flow meter images, oil filling machine, fuel dispenser, tanker unloading pune" />
   <title>Photo Gallery | Fluid-Tech – Industrial Process Solutions, Pune</title>
   <link rel="icon" type="image/webp" href="fluid_tech_logo-removebg-preview.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
   <style>
-    /* ── Gallery Page Extra Styles ── */
-    .gallery-filter-tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 40px;
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --ft-navy:       #060f1e;
+      --ft-navy-mid:   #0b1a30;
+      --ft-navy-card:  #0d1e38;
+      --ft-primary:    #1455a4;
+      --ft-accent:     #00c6e8;
+      --ft-accent2:    #0ef0b0;
+      --ft-white:      #f0f5ff;
+      --ft-gray:       #8fa0b8;
+      --ft-gray-lt:    #c8d8ec;
+      --ft-grad:       linear-gradient(135deg,#1455a4 0%,#00c6e8 100%);
+      --ft-glass:      rgba(13,30,56,0.75);
+      --ft-border:     rgba(20,85,164,0.22);
+      --ft-border-h:   rgba(0,198,232,0.50);
+      --ft-radius:     12px;
+      --ft-trans:      0.32s cubic-bezier(.4,0,.2,1);
+      --ft-font-d:     'Barlow Condensed', sans-serif;
+      --ft-font-b:     'DM Sans', sans-serif;
     }
-    .gallery-filter-tab {
-      padding: 8px 22px;
-      border-radius: 100px;
-      border: 1.5px solid rgba(20,85,164,0.35);
-      background: transparent;
-      color: var(--gray-light);
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-      letter-spacing: 0.04em;
-    }
-    .gallery-filter-tab:hover { border-color: var(--accent); color: var(--accent); }
-    .gallery-filter-tab.active {
-      background: var(--gradient-brand);
-      border-color: transparent;
-      color: var(--white);
-      box-shadow: var(--shadow-brand);
-    }
-    .gallery-masonry {
-      columns: 3;
-      column-gap: 16px;
-    }
-    @media (max-width: 991px) { .gallery-masonry { columns: 2; } }
-    @media (max-width: 575px)  { .gallery-masonry { columns: 1; } }
 
-    .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 16px;
+    /* ═══════════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════════ */
+    body {
+      background: var(--ft-navy);
+      color: var(--ft-white);
+      font-family: var(--ft-font-b);
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       PAGE HERO
+    ═══════════════════════════════════════════ */
+    .pg-hero {
       position: relative;
-      border-radius: var(--radius-md);
+      padding: 120px 0 64px;
+      background: var(--ft-navy);
       overflow: hidden;
-      cursor: pointer;
-      border: 1px solid rgba(20,85,164,0.2);
-      transition: var(--transition);
     }
-    .gallery-item:hover {
-      border-color: rgba(0,198,232,0.45);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    .pg-hero::before {                        /* animated grid */
+      content:'';
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(0,198,232,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,198,232,.05) 1px,transparent 1px);
+      background-size:52px 52px;
+      animation:gridDrift 30s linear infinite;
     }
-    .gallery-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.55s ease;
+    @keyframes gridDrift { to { background-position:52px 52px; } }
+    .pg-hero::after {                         /* glow orb */
+      content:'';
+      position:absolute; top:-100px; right:-100px;
+      width:480px; height:480px;
+      background:radial-gradient(circle,rgba(0,198,232,.16) 0%,transparent 65%);
+      pointer-events:none;
     }
-    .gallery-item:hover img { transform: scale(1.08); }
-    .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 30%, rgba(6,15,30,0.92));
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 18px;
+    .pg-hero-inner { position:relative; z-index:2; }
+    .pg-crumb {
+      display:flex; align-items:center; gap:8px;
+      font-size:.72rem; letter-spacing:.09em; text-transform:uppercase;
+      color:var(--ft-gray); margin-bottom:18px;
     }
-    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-    .gallery-item-caption {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: 0.04em;
+    .pg-crumb a { color:var(--ft-accent); text-decoration:none; }
+    .pg-crumb a:hover { color:var(--ft-white); }
+    .pg-hero h1 {
+      font-family:var(--ft-font-d);
+      font-size:clamp(2.6rem,6vw,4.8rem);
+      font-weight:800; line-height:1.06; margin-bottom:14px;
     }
-    .gallery-item-cat {
-      font-size: 0.7rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
+    .pg-hero h1 .hl {
+      background:var(--ft-grad);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
-    .gallery-zoom-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      width: 52px;
-      height: 52px;
-      background: var(--gradient-brand);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
-      box-shadow: var(--shadow-brand);
+    .pg-hero p {
+      font-size:1.0rem; color:var(--ft-gray-lt);
+      max-width:560px; line-height:1.75; margin-bottom:0;
     }
-    .gallery-item:hover .gallery-zoom-icon { transform: translate(-50%, -50%) scale(1); }
+    .pg-stats {
+      display:flex; gap:32px; flex-wrap:wrap; margin-top:32px;
+    }
+    .pg-stat strong {
+      display:block;
+      font-family:var(--ft-font-d);
+      font-size:1.9rem; font-weight:800; line-height:1;
+      background:var(--ft-grad);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .pg-stat span {
+      font-size:.7rem; text-transform:uppercase;
+      letter-spacing:.1em; color:var(--ft-gray);
+    }
+    .pg-divider {
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--ft-accent),transparent);
+      margin-top:56px; opacity:.35;
+    }
 
-    /* Lightbox */
-    .lightbox-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      background: rgba(6,15,30,0.97);
-      backdrop-filter: blur(24px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      animation: fadeIn 0.3s ease;
+    /* ═══════════════════════════════════════════
+       GALLERY SECTION
+    ═══════════════════════════════════════════ */
+    .gallery-sec {
+      padding:72px 0 100px;
+      background:var(--ft-navy);
+      position:relative;
     }
-    .lightbox-modal.active { display: flex; }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    .lightbox-img {
-      max-width: 88vw;
-      max-height: 82vh;
-      object-fit: contain;
-      border-radius: var(--radius-md);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
-      border: 1px solid rgba(20,85,164,0.3);
-      animation: zoomIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+
+    /* Section header */
+    .sec-head { text-align:center; margin-bottom:48px; }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:.7rem; font-weight:600; text-transform:uppercase;
+      letter-spacing:.16em; color:var(--ft-accent); margin-bottom:10px;
     }
-    @keyframes zoomIn { from { transform: scale(0.88); opacity:0; } to { transform: scale(1); opacity:1; } }
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: var(--white);
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: var(--transition);
+    .eyebrow::before,.eyebrow::after {
+      content:''; width:26px; height:1px;
+      background:var(--ft-accent); opacity:.55;
     }
-    .lightbox-close:hover { background: rgba(220,53,69,0.4); }
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(20,85,164,0.35);
-      border: 1px solid rgba(20,85,164,0.5);
-      color: var(--white);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: var(--transition);
+    .sec-head h2 {
+      font-family:var(--ft-font-d);
+      font-size:clamp(1.9rem,4vw,3rem);
+      font-weight:800; letter-spacing:.02em; margin-bottom:12px;
     }
-    .lightbox-nav:hover { background: var(--primary); }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-    .lightbox-counter {
-      position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.8rem;
-      color: var(--gray);
-      letter-spacing: 0.1em;
+    .sec-head h2 .hl {
+      background:var(--ft-grad);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
-    .lightbox-caption {
-      position: absolute;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: var(--gray-light);
-      font-size: 0.88rem;
-      white-space: nowrap;
+    .sec-head p { font-size:.9rem; color:var(--ft-gray); max-width:520px; margin:0 auto; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display:flex; gap:8px; flex-wrap:wrap;
+      justify-content:center; margin-bottom:48px;
     }
-    /* Category label chips */
-    .gallery-category-label {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--gradient-brand);
-      color: white;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 100px;
-      z-index: 2;
+    .fb {
+      position:relative; overflow:hidden;
+      padding:8px 20px; border-radius:100px;
+      border:1.5px solid var(--ft-border);
+      background:transparent;
+      color:var(--ft-gray-lt);
+      font-family:var(--ft-font-b);
+      font-size:.8rem; font-weight:500;
+      cursor:pointer; transition:var(--ft-trans);
+      letter-spacing:.04em; white-space:nowrap;
+    }
+    .fb::before {
+      content:''; position:absolute; inset:0;
+      background:var(--ft-grad); opacity:0;
+      transition:opacity var(--ft-trans);
+    }
+    .fb span { position:relative; z-index:1; }
+    .fb:hover { border-color:var(--ft-border-h); color:var(--ft-white); transform:translateY(-1px); }
+    .fb.active { border-color:transparent; color:var(--ft-white); box-shadow:0 4px 18px rgba(0,198,232,.28); }
+    .fb.active::before { opacity:1; }
+    .fb .cnt {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:17px; height:17px; border-radius:50%;
+      background:rgba(255,255,255,.18);
+      font-size:.62rem; margin-left:5px; font-weight:700;
+    }
+
+    /* ── MASONRY GRID ── */
+    .g-grid {
+      columns:3; column-gap:16px;
+    }
+    @media(max-width:991px){ .g-grid{columns:2;} }
+    @media(max-width:575px){ .g-grid{columns:1;} }
+
+    /* ── CARD ── */
+    .g-card {
+      break-inside:avoid; margin-bottom:16px;
+      position:relative; border-radius:var(--ft-radius);
+      overflow:hidden; cursor:pointer;
+      border:1px solid var(--ft-border);
+      background:var(--ft-navy-card);
+      transition:border-color var(--ft-trans),box-shadow var(--ft-trans),transform var(--ft-trans);
+      animation:cardIn .5s ease both;
+    }
+    @keyframes cardIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+    .g-card:hover {
+      border-color:var(--ft-border-h);
+      box-shadow:0 14px 48px rgba(0,0,0,.55),0 0 0 1px rgba(0,198,232,.12);
+      transform:translateY(-3px); z-index:5;
+    }
+    .g-card img {
+      width:100%; display:block;
+      object-fit:cover;
+      filter:saturate(.85) brightness(.90);
+      transition:transform .6s cubic-bezier(.4,0,.2,1),filter .4s ease;
+    }
+    .g-card:hover img { transform:scale(1.07); filter:saturate(1.04) brightness(1.0); }
+
+    /* Category pill */
+    .g-pill {
+      position:absolute; top:10px; left:10px; z-index:3;
+      display:inline-flex; align-items:center; gap:4px;
+      padding:3px 10px; border-radius:100px;
+      font-size:.63rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.1em;
+      color:#fff; backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .g-pill.flowmeters  { background:rgba(20,85,164,.82); }
+    .g-pill.filling     { background:rgba(0,150,100,.75); color:#b8ffe8; border-color:rgba(0,220,140,.3); }
+    .g-pill.dispensers  { background:rgba(180,80,0,.78); }
+    .g-pill.unloading   { background:rgba(100,30,160,.78); }
+    .g-pill.monitoring  { background:rgba(14,240,176,.18); color:#0ef0b0; border-color:rgba(14,240,176,.35); }
+    .g-pill i { font-size:.58rem; opacity:.9; }
+
+    /* Hover overlay */
+    .g-overlay {
+      position:absolute; inset:0; z-index:2;
+      background:linear-gradient(to bottom,transparent 25%,rgba(6,15,30,.6) 60%,rgba(6,15,30,.96) 100%);
+      opacity:0; transition:opacity .35s ease;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:16px 14px;
+    }
+    .g-card:hover .g-overlay { opacity:1; }
+    .g-oc { font-size:.67rem; text-transform:uppercase; letter-spacing:.12em; color:var(--ft-accent); font-weight:600; margin-bottom:2px; }
+    .g-ot { font-family:var(--ft-font-d); font-size:.95rem; font-weight:700; color:var(--ft-white); line-height:1.3; letter-spacing:.02em; }
+
+    /* Zoom icon */
+    .g-zoom {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%) scale(0);
+      width:50px; height:50px; border-radius:50%;
+      background:var(--ft-grad);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.05rem; color:#fff; z-index:3;
+      transition:transform .4s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow:0 6px 24px rgba(0,198,232,.45);
+    }
+    .g-card:hover .g-zoom { transform:translate(-50%,-50%) scale(1); }
+
+    /* Staggered animation delays */
+    .g-card:nth-child(3n+1){ animation-delay:.04s }
+    .g-card:nth-child(3n+2){ animation-delay:.09s }
+    .g-card:nth-child(3n)  { animation-delay:.14s }
+
+    /* Hide/show on filter */
+    .g-card[style*="display: none"] { display:none !important; }
+    .g-card.flt-in { animation:cardIn .32s ease both; }
+
+    /* No results */
+    .no-res {
+      display:none; text-align:center; padding:70px 0; color:var(--ft-gray);
+    }
+    .no-res.show { display:block; }
+    .no-res i { font-size:2.8rem; display:block; margin-bottom:14px; opacity:.35; }
+
+    /* Load more */
+    .lm-wrap { text-align:center; margin-top:52px; }
+    .btn-lm {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:12px 34px; border-radius:100px;
+      border:1.5px solid var(--ft-border);
+      background:transparent; color:var(--ft-gray-lt);
+      font-family:var(--ft-font-b); font-size:.86rem; font-weight:500;
+      cursor:pointer; transition:var(--ft-trans); letter-spacing:.04em;
+    }
+    .btn-lm:hover {
+      border-color:var(--ft-accent); color:var(--ft-accent);
+      background:rgba(0,198,232,.06); transform:translateY(-2px);
+    }
+    .btn-lm i { transition:transform .3s ease; }
+    .btn-lm:hover i { transform:rotate(180deg); }
+
+    /* ═══════════════════════════════════════════
+       PREMIUM LIGHTBOX
+    ═══════════════════════════════════════════ */
+    #lightbox {
+      position:fixed; inset:0; z-index:9999;
+      background:rgba(4,10,20,.97);
+      backdrop-filter:blur(28px) saturate(.55);
+      display:none; align-items:center; justify-content:center;
+      padding:24px;
+    }
+    #lightbox.active { display:flex; }
+    #lightbox::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);
+      pointer-events:none;
+    }
+    .lb-kbd {
+      position:absolute; top:18px; left:50%; transform:translateX(-50%);
+      font-size:.68rem; color:var(--ft-gray); letter-spacing:.08em;
+      opacity:0; animation:kbdHint 3s ease 1.2s forwards;
+    }
+    @keyframes kbdHint { 20%{opacity:1} 80%{opacity:1} 100%{opacity:0} }
+    #lbImg {
+      max-width:84vw; max-height:78vh; object-fit:contain;
+      border-radius:var(--ft-radius);
+      border:1px solid rgba(0,198,232,.18);
+      box-shadow:0 28px 90px rgba(0,0,0,.8);
+      transition:opacity .25s ease, transform .28s ease;
+    }
+    .lb-close {
+      position:absolute; top:18px; right:20px;
+      width:44px; height:44px; border-radius:50%;
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.14);
+      color:#fff; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; font-size:.95rem; transition:var(--ft-trans); z-index:10;
+    }
+    .lb-close:hover { background:rgba(220,53,69,.5); transform:rotate(90deg); }
+    .lb-nav {
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:50px; height:50px; border-radius:50%;
+      background:rgba(20,85,164,.38); border:1px solid rgba(0,198,232,.32);
+      color:#fff; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; font-size:.95rem; transition:var(--ft-trans); z-index:10;
+    }
+    .lb-nav:hover { background:var(--ft-primary); transform:translateY(-50%) scale(1.08); }
+    .lb-prev { left:18px; }
+    .lb-next { right:18px; }
+
+    /* Thumbnail strip */
+    .lb-thumbs {
+      position:absolute; bottom:68px; left:50%; transform:translateX(-50%);
+      display:flex; gap:7px; padding:7px 10px;
+      background:rgba(6,15,30,.72); border:1px solid var(--ft-border);
+      border-radius:100px; backdrop-filter:blur(12px);
+      max-width:88vw; overflow-x:auto; scrollbar-width:none;
+    }
+    .lb-thumbs::-webkit-scrollbar { display:none; }
+    .lb-th {
+      width:34px; height:34px; border-radius:7px; overflow:hidden;
+      cursor:pointer; flex-shrink:0;
+      border:2px solid transparent; transition:var(--ft-trans); opacity:.5;
+    }
+    .lb-th img { width:100%; height:100%; object-fit:cover; }
+    .lb-th.active { border-color:var(--ft-accent); opacity:1; }
+    .lb-th:hover { opacity:.8; }
+
+    /* Info bar */
+    .lb-info {
+      position:absolute; bottom:0; left:0; right:0;
+      padding:18px 64px 14px;
+      background:linear-gradient(to top,rgba(6,15,30,.92) 55%,transparent);
+      display:flex; align-items:flex-end; justify-content:space-between;
+    }
+    .lb-cat { font-size:.66rem; text-transform:uppercase; letter-spacing:.12em; color:var(--ft-accent); font-weight:600; margin-bottom:2px; }
+    .lb-cap { font-family:var(--ft-font-d); font-size:1.1rem; font-weight:700; color:var(--ft-white); letter-spacing:.02em; }
+    .lb-cnt { font-size:.76rem; color:var(--ft-gray); letter-spacing:.1em; }
+    .lb-cnt strong { color:var(--ft-white); }
+
+    /* ═══════════════════════════════════════════
+       FLOATING BTNS
+    ═══════════════════════════════════════════ */
+    .floating-btns { position:fixed; bottom:26px; right:20px; display:flex; flex-direction:column; gap:11px; z-index:8000; }
+    .float-btn {
+      width:46px; height:46px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.05rem; cursor:pointer; border:none;
+      transition:var(--ft-trans); color:#fff; text-decoration:none;
+    }
+    .float-top     { background:linear-gradient(135deg,#1455a4,#00c6e8); }
+    .float-whatsapp{ background:#25d366; }
+    .float-btn:hover { transform:scale(1.1) translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,.4); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .58s ease,transform .58s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* Mobile tweaks */
+    @media(max-width:767px){
+      .lb-info { padding:14px 56px 12px; }
+      .lb-thumbs { display:none; }
+      .lb-prev { left:8px; } .lb-next { right:8px; }
+      .lb-nav { width:40px; height:40px; font-size:.85rem; }
+      .pg-hero { padding:100px 0 48px; }
     }
   </style>
 </head>
 <body>
 
-   <!-- ════════════════════════════════════════════════════════
-       NAVBAR
-  ════════════════════════════════════════════════════════ -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
-        <div class="brand-text">
-          <span class="brand-name">Fluid-Tech</span>
-          <span class="brand-tagline">Process &amp; Automation</span>
-        </div>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-        <ul class="navbar-nav gap-1 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-          <li class="nav-item"><a class="nav-link" href="product.html">Products &amp; Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="photo_gallery.html">Photo Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="video_gallery.html">Videos</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry.html">Get Enquiry</a></li>
-        </ul>
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR (unchanged)
+═══════════════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+      <div class="brand-text">
+        <span class="brand-name">Fluid-Tech</span>
+        <span class="brand-tagline">Process &amp; Automation</span>
       </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav gap-1 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house-chimney me-1"></i>Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="product.html">Products &amp; Services</a></li>
+        <li class="nav-item"><a class="nav-link active" href="photo_gallery.html">Photo Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="video_gallery.html">Videos</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item ms-lg-2"><a class="nav-link nav-enquiry-btn" href="enquiry.html">Get Enquiry</a></li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- PAGE HERO -->
+<!-- ═══════════════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════════════ -->
   <section class="page-hero">
     <div class="page-hero-gradient"></div>
     <div class="container page-hero-content">
@@ -253,360 +438,818 @@
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
-  <section class="section-pad section-dark">
-    <div class="container">
+<!-- ═══════════════════════════════════════════════════
+     GALLERY SECTION
+═══════════════════════════════════════════════════ -->
+<section class="gallery-sec">
+  <div class="container">
 
-      <!-- Filter Tabs -->
-      <div class="gallery-filter-tabs reveal">
-        <button class="gallery-filter-tab active" data-filter="all">All</button>
-        <button class="gallery-filter-tab" data-filter="pumps">Pumps</button>
-        <button class="gallery-filter-tab" data-filter="valves">Valves</button>
-        <button class="gallery-filter-tab" data-filter="instruments">Instrumentation</button>
-        <button class="gallery-filter-tab" data-filter="automation">Automation</button>
-        <button class="gallery-filter-tab" data-filter="plants">Process Plants</button>
-        <button class="gallery-filter-tab" data-filter="installation">Installations</button>
+    <!-- Section Header -->
+    <!-- <div class="sec-head reveal">
+      <div class="eyebrow"><span></span>Our Products<span></span></div>
+      <h2>Equipment &amp; <span class="hl">Solutions</span></h2>
+      <p>Authentic product photographs of Fluid-Tech manufactured and supplied equipment — exactly what you get.</p>
+    </div> -->
+
+    <!-- Filter Bar -->
+    <div class="filter-bar reveal">
+      <button class="fb active" data-filter="all">
+        <span>All <span class="cnt" id="cnt-all">58</span></span>
+      </button>
+      <button class="fb" data-filter="flowmeters">
+        <span><i class="fa-solid fa-gauge-high me-1" style="font-size:.68rem"></i>Flow Meters <span class="cnt" id="cnt-flowmeters">0</span></span>
+      </button>
+      <button class="fb" data-filter="filling">
+        <span><i class="fa-solid fa-fill-drip me-1" style="font-size:.68rem"></i>Filling Machines <span class="cnt" id="cnt-filling">0</span></span>
+      </button>
+      <button class="fb" data-filter="dispensers">
+        <span><i class="fa-solid fa-gas-pump me-1" style="font-size:.68rem"></i>Fuel Dispensers <span class="cnt" id="cnt-dispensers">0</span></span>
+      </button>
+      <button class="fb" data-filter="unloading">
+        <span><i class="fa-solid fa-truck-ramp-box me-1" style="font-size:.68rem"></i>Unloading Systems <span class="cnt" id="cnt-unloading">0</span></span>
+      </button>
+      <button class="fb" data-filter="monitoring">
+        <span><i class="fa-solid fa-chart-line me-1" style="font-size:.68rem"></i>Monitoring <span class="cnt" id="cnt-monitoring">0</span></span>
+      </button>
+    </div>
+
+    <!-- ── MASONRY GALLERY GRID ── -->
+    <div class="g-grid reveal" id="galleryGrid">
+
+      <!-- ═══ FLOW METERS ═══ -->
+
+      <!-- Liquid Flow Meter 1 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Liquid Flow Meter" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo1.webp" alt="Liquid Flow Meter – Fluid-Tech Pune" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Liquid Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
       </div>
 
-      <!-- Masonry Grid -->
-      <div class="gallery-masonry reveal" id="galleryGrid">
+      <!-- Liquid Flow Meter 2 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Liquid Flow Meter – ₹55,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo2.webp" alt="Liquid Flow Meter industrial grade" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Liquid Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <!-- Pumps -->
-        <div class="gallery-item" data-category="pumps">
-          <span class="gallery-category-label">Pumps</span>
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Centrifugal Pump Installation" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Pumps</div>
-            <div class="gallery-item-caption">Centrifugal Pump – Chemical Industry</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Liquid Flow Meter 3 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Liquid Flow Meter – Process Application" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo3.webp" alt="Liquid flow meter for industrial process" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Liquid Flow Meter – Process Application</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="plants">
-          <span class="gallery-category-label">Process Plants</span>
-          <img src="https://images.unsplash.com/photo-1565008576549-57569a49a85a?w=800&q=80" alt="Industrial Process Plant" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Process Plants</div>
-            <div class="gallery-item-caption">Industrial Process Plant – Pune MIDC</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Tanker Loading Flow Meter 1 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Tanker Loading Flow Meter – ₹2 Lakh/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo4.webp" alt="Tanker loading and unloading flow meter system" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Tanker Loading Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="instruments">
-          <span class="gallery-category-label">Instrumentation</span>
-          <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80" alt="Flow Meter Installation" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Instrumentation</div>
-            <div class="gallery-item-caption">Electromagnetic Flow Meter – Water Treatment</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Tanker Loading Flow Meter 2 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Tanker Unloading Flow Meter – Wide View" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo5.webp" alt="Tanker unloading flow meter wide angle view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Tanker Unloading Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="automation">
-          <span class="gallery-category-label">Automation</span>
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="PLC Control Panel" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Automation</div>
-            <div class="gallery-item-caption">PLC Control Panel – Pharmaceutical Plant</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Tanker Loading Flow Meter 3 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Tanker Flow Meter – Close-up" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo6.webp" alt="Tanker flow meter close up detail" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Tanker Flow Meter – Detail View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="valves">
-          <span class="gallery-category-label">Valves</span>
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Industrial Valve Assembly" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Valves</div>
-            <div class="gallery-item-caption">Ball Valve Assembly – Pipeline</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Chemical P.D. Flow Metre 1 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Chemical P.D. Flow Metre – ₹65,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo7.webp" alt="Chemical positive displacement flow metre" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Chemical P.D. Flow Metre</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="installation">
-          <span class="gallery-category-label">Installation</span>
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="On-site Installation" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Installation</div>
-            <div class="gallery-item-caption">On-site Commissioning – Food Industry</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Chemical P.D. Flow Metre 2 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Fuel Consumption Meter – Chemical Grade" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo8.webp" alt="Fuel consumption meter chemical grade" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Fuel Consumption Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="pumps">
-          <span class="gallery-category-label">Pumps</span>
-          <img src="https://images.unsplash.com/photo-1563455765-9b2de95a7e0c?w=800&q=80" alt="Gear Pump" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Pumps</div>
-            <div class="gallery-item-caption">Gear Pump – Viscous Fluid Application</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Acid Flow Meter 1 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Acid Flow Meter – ₹90,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo9.webp" alt="Acid flow meter for corrosive liquid measurement" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Acid Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="instruments">
-          <span class="gallery-category-label">Instrumentation</span>
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Pressure Transmitter" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Instrumentation</div>
-            <div class="gallery-item-caption">Pressure Transmitter – Process Line</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Acid Flow Meter 2 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Acid Flow Meter – Installation View" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo10.webp" alt="Acid flow meter installed in pipeline" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Acid Flow Meter – Pipeline Install</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="plants">
-          <span class="gallery-category-label">Process Plants</span>
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" alt="Chemical Process Plant" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Process Plants</div>
-            <div class="gallery-item-caption">Chemical Processing Facility</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Acid Flow Meter 3 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Acid Flow Meter – Instrument Panel" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo11.webp" alt="Acid flow meter instrument panel view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Acid Flow Meter – Instrument Panel</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="automation">
-          <span class="gallery-category-label">Automation</span>
-          <img src="https://images.unsplash.com/photo-1612235253836-a7d714bc0e72?w=800&q=80" alt="SCADA System" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Automation</div>
-            <div class="gallery-item-caption">SCADA Monitoring Station</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Digital Flow Meter 1 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Digital Flow Meter – ₹50,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo12.webp" alt="Digital flow meter with digital display" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Digital Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="valves">
-          <span class="gallery-category-label">Valves</span>
-          <img src="https://images.unsplash.com/photo-1565108520693-c4ebc04cefed?w=800&q=80" alt="Butterfly Valve" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Valves</div>
-            <div class="gallery-item-caption">Butterfly Valve – Large Diameter Pipeline</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Digital Flow Meter 2 (FT2300-80) -->
+      <div class="g-card" data-category="flowmeters" data-caption="Fluid Tech FT2300-80 PD Flow Meter" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo13.webp" alt="Fluid Tech FT2300-80 Positive Displacement Flow Meter" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Fluid Tech FT2300-80 PD Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="installation">
-          <span class="gallery-category-label">Installation</span>
-          <img src="https://images.unsplash.com/photo-1565008576549-57569a49a85a?w=600&q=80" alt="Pump Installation" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Installation</div>
-            <div class="gallery-item-caption">Pump Skid Installation – Water Treatment</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Digital Flow Meter 3 (FT2300-40) -->
+      <div class="g-card" data-category="flowmeters" data-caption="Fluid Tech FT2300-40 PD Flow Meter" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo14.webp" alt="Fluid Tech FT2300-40 Positive Displacement Flow Meter" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Fluid Tech FT2300-40 PD Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="instruments">
-          <span class="gallery-category-label">Instrumentation</span>
-          <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt="Level Sensor" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Instrumentation</div>
-            <div class="gallery-item-caption">Radar Level Transmitter – Storage Tank</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Positive Displacement Flow Meter 1 (FT2300-06) -->
+      <div class="g-card" data-category="flowmeters" data-caption="Fluid Tech FT2300-06 PD Flow Meter – ₹40,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo15.webp" alt="Fluid Tech FT2300-06 Positive Displacement Flow Meter" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Fluid Tech FT2300-06 PD Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="pumps">
-          <span class="gallery-category-label">Pumps</span>
-          <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&q=80" alt="Diaphragm Pump" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Pumps</div>
-            <div class="gallery-item-caption">AODD Pump – Chemical Transfer</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- PD Flow Meter -->
+      <div class="g-card" data-category="flowmeters" data-caption="PD Flow Meter – ₹44,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo16.webp" alt="PD Flow Meter positive displacement type" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">PD Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-        <div class="gallery-item" data-category="plants">
-          <span class="gallery-category-label">Process Plants</span>
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="ETP Plant" loading="lazy" />
-          <div class="gallery-item-overlay">
-            <div class="gallery-item-cat">Process Plants</div>
-            <div class="gallery-item-caption">ETP / STP – Effluent Treatment Plant</div>
-          </div>
-          <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-        </div>
+      <!-- Pharma PD Flow Meter -->
+      <div class="g-card" data-category="flowmeters" data-caption="Pharma PD Flow Meter – Pharmaceutical Grade" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo17.webp" alt="Pharma grade PD flow meter for pharmaceutical applications" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Pharma PD Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
 
-      </div><!-- end gallery-masonry -->
+      <!-- FT2300-25 PD Flow Meter -->
+      <div class="g-card" data-category="flowmeters" data-caption="Fluid Tech FT2300-25 PD Flow Meter – ₹35,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo18.webp" alt="Fluid Tech FT2300-25 Positive Displacement Flow Meter" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Fluid Tech FT2300-25 PD Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- FT2300-25 variant 2 -->
+      <div class="g-card" data-category="flowmeters" data-caption="FT2300-25 Positive Displacement Flow Meter – Alt View" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo19.webp" alt="FT2300-25 PD flow meter alternate view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">FT2300-25 PD Flow Meter – Alt View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Diesel Flow Meter -->
+      <div class="g-card" data-category="flowmeters" data-caption="Diesel Flow Meter – FT2306 Industrial – ₹50,000/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo20.webp" alt="Diesel flow meter FT2306 industrial water flowmeter" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Diesel Flow Meter – FT2306 Industrial</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Chemical Flow Meter 1 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Chemical Flow Meter – ₹24,500/Piece" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo21.webp" alt="Chemical flow meter for corrosive and acid liquids" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Chemical Flow Meter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Chemical Flow Meter 2 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Chemical Flow Meter – Assembly View" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo22.webp" alt="Chemical flow meter assembly view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Chemical Flow Meter – Assembly</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Chemical Flow Meter 3 -->
+      <div class="g-card" data-category="flowmeters" data-caption="Chemical Flow Meter – Product Render" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo23.webp" alt="Chemical flow meter product render" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Chemical Flow Meter – Product View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Solvent PD Flow Transmitter -->
+      <div class="g-card" data-category="flowmeters" data-caption="Solvent PD Flow Transmitter – On-site" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo24.webp" alt="Solvent PD flow transmitter on-site installation" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Solvent PD Flow Transmitter</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Positive Displacement Flow Meters -->
+      <div class="g-card" data-category="flowmeters" data-caption="Positive Displacement Flow Meters – Collection" data-clabel="Flow Meters">
+        <span class="g-pill flowmeters"><i class="fa-solid fa-gauge-high"></i> Flow Meters</span>
+        <img src="assest/video_page_images/photo25.webp" alt="Positive displacement flow meters collection" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Flow Meters</div><div class="g-ot">Positive Displacement Flow Meters</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- ═══ MONITORING SYSTEMS ═══ -->
+
+      <!-- DG Fuel Consumption Monitor 1 -->
+      <div class="g-card" data-category="monitoring" data-caption="DG Fuel Consumption Monitor – FT2304 – ₹65,000/Piece" data-clabel="Monitoring">
+        <span class="g-pill monitoring"><i class="fa-solid fa-chart-line"></i> Monitoring</span>
+        <img src="assest/video_page_images/photo26.webp" alt="DG Fuel Consumption Monitor Fluid Tech FT2304" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Monitoring</div><div class="g-ot">DG Fuel Consumption Monitor – FT2304</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- DG Fuel Consumption Monitor 2 -->
+      <div class="g-card" data-category="monitoring" data-caption="DG Fuel Consumption Monitor – Front Panel" data-clabel="Monitoring">
+        <span class="g-pill monitoring"><i class="fa-solid fa-chart-line"></i> Monitoring</span>
+        <img src="assest/video_page_images/photo27.webp" alt="DG fuel consumption monitor front panel" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Monitoring</div><div class="g-ot">DG Fuel Consumption Monitor – Panel</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- DG Fuel Consumption Monitor 3 -->
+      <div class="g-card" data-category="monitoring" data-caption="DG Fuel Consumption Monitor – Side View" data-clabel="Monitoring">
+        <span class="g-pill monitoring"><i class="fa-solid fa-chart-line"></i> Monitoring</span>
+        <img src="assest/video_page_images/photo28.webp" alt="DG fuel consumption monitor side view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Monitoring</div><div class="g-ot">DG Fuel Consumption Monitor – Side</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Fuel Consumption Monitoring System 1 -->
+      <div class="g-card" data-category="monitoring" data-caption="Fuel Consumption Monitoring System – ₹65,000/Piece" data-clabel="Monitoring">
+        <span class="g-pill monitoring"><i class="fa-solid fa-chart-line"></i> Monitoring</span>
+        <img src="assest/video_page_images/photo29.webp" alt="Fuel consumption monitoring system installed" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Monitoring</div><div class="g-ot">Fuel Consumption Monitoring System</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Fuel Consumption Monitoring System 2 -->
+      <div class="g-card" data-category="monitoring" data-caption="Fuel Consumption Monitoring System – Wide" data-clabel="Monitoring">
+        <span class="g-pill monitoring"><i class="fa-solid fa-chart-line"></i> Monitoring</span>
+        <img src="assest/video_page_images/photo30.webp" alt="Fuel consumption monitoring system wide view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Monitoring</div><div class="g-ot">Fuel Consumption Monitoring – Wide</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- ═══ FILLING MACHINES ═══ -->
+
+      <!-- Dual Channel Oil Filling Machine 1 -->
+      <div class="g-card" data-category="filling" data-caption="Dual Channel Oil Filling Machine – ₹2.50 Lakh/Piece" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo31.webp" alt="Dual channel oil filling machine for industrial use" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Dual Channel Oil Filling Machine</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Dual Channel Oil Filling Machine 2 -->
+      <div class="g-card" data-category="filling" data-caption="Dual Channel Oil Filling Machine – Alt View" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo32.webp" alt="Dual channel oil filling machine alternate angle" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Dual Channel Oil Filling – Alt View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Single Channel Oil Filling Machine 1 -->
+      <div class="g-card" data-category="filling" data-caption="Single Channel Oil Filling Machine – ₹1.50 Lakh/Piece" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo33.webp" alt="Single channel oil filling machine" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Single Channel Oil Filling Machine</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Single Channel Oil Filling Machine 2 -->
+      <div class="g-card" data-category="filling" data-caption="Single Channel Oil Filling Machine – Render" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo34.webp" alt="Single channel oil filling machine render" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Single Channel Oil Filling – Render</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Brake Oil Filling Machine 1 -->
+      <div class="g-card" data-category="filling" data-caption="Brake Oil Filling Machine – ₹1.75 Lakh/Piece" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo35.webp" alt="Brake oil filling machine for automotive industry" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Brake Oil Filling Machine</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Brake Oil Filling Machine 2 -->
+      <div class="g-card" data-category="filling" data-caption="Brake Oil Filling Machine – Product Shot" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo36.webp" alt="Brake oil filling machine product shot" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Brake Oil Filling Machine – Product</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Semi Automatic Liquid Filling Machine 1 -->
+      <div class="g-card" data-category="filling" data-caption="Semi Automatic Liquid Filling Machine – ₹52,000/Piece" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo37.webp" alt="Semi automatic liquid filling machine" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Semi Automatic Liquid Filling Machine</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Semi Automatic Liquid Filling Machine 2 -->
+      <div class="g-card" data-category="filling" data-caption="Oil Filling Machine – Repairing Service" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo38.webp" alt="Oil filling machine repairing service view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">Oil Filling Machine – Service View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- 20W40 Oil Dispenser 1 -->
+      <div class="g-card" data-category="filling" data-caption="20W40 Oil Dispenser – On-site" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo39.webp" alt="20W40 oil dispenser on-site photo" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">20W40 Oil Dispenser – On-site</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- 20W40 Oil Dispenser 2 -->
+      <div class="g-card" data-category="filling" data-caption="20W40 Oil Dispenser – Product Render" data-clabel="Filling Machines">
+        <span class="g-pill filling"><i class="fa-solid fa-fill-drip"></i> Filling</span>
+        <img src="assest/video_page_images/photo40.webp" alt="20W40 oil dispenser product render" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Filling Machines</div><div class="g-ot">20W40 Oil Dispenser – Render</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- ═══ FUEL DISPENSERS ═══ -->
+
+      <!-- Mobile Fuel Dispenser 1 -->
+      <div class="g-card" data-category="dispensers" data-caption="Mobile Fuel Dispenser – ₹75,000/Piece" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo41.webp" alt="Mobile fuel dispenser portable unit" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Mobile Fuel Dispenser</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Mobile Fuel Dispenser 2 -->
+      <div class="g-card" data-category="dispensers" data-caption="Mobile Fuel Dispenser – Field View" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo42.webp" alt="Mobile fuel dispenser field view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Mobile Fuel Dispenser – Field View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Mobile Fuel Dispenser 3 -->
+      <div class="g-card" data-category="dispensers" data-caption="Mobile Fuel Dispenser – Tall Unit" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo43.webp" alt="Mobile fuel dispenser tall vertical unit" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Mobile Fuel Dispenser – Tall Unit</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- 4 Nozzle Dispensing System 1 -->
+      <div class="g-card" data-category="dispensers" data-caption="4 Nozzle Dispensing System – ₹1.20 Lakh/Piece" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo44.webp" alt="4 nozzle dispensing system for multi-point filling" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">4 Nozzle Dispensing System</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- 4 Nozzle Dispensing System 2 -->
+      <div class="g-card" data-category="dispensers" data-caption="4 Nozzle Dispensing System – Top View" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo45.webp" alt="4 nozzle dispensing system top view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">4 Nozzle Dispensing System – Top</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- 4 Nozzle Dispensing System 3 -->
+      <div class="g-card" data-category="dispensers" data-caption="4 Nozzle Dispensing System – Wide Shot" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo46.webp" alt="4 nozzle dispensing system wide shot" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">4 Nozzle Dispensing System – Wide</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Fuel Dispenser Stationary 1 -->
+      <div class="g-card" data-category="dispensers" data-caption="Fuel Dispenser Stationary Unit – ₹80,000/Piece" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo47.webp" alt="Fuel dispenser stationary unit dual channel shock absorber" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Fuel Dispenser Stationary Unit</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Fuel Dispenser Stationary 2 -->
+      <div class="g-card" data-category="dispensers" data-caption="Fuel Dispenser Stationary – Side View" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo48.webp" alt="Fuel dispenser stationary unit side view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Fuel Dispenser Stationary – Side</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Diesel Dispenser Machine 1 -->
+      <div class="g-card" data-category="dispensers" data-caption="Diesel Dispenser Machine – ₹1.30 Lakh/Piece" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo49.webp" alt="Diesel dispenser machine for fuel station" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Diesel Dispenser Machine</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Diesel Dispenser Machine 2 -->
+      <div class="g-card" data-category="dispensers" data-caption="Diesel Dispenser – Front View" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo50.webp" alt="Diesel dispenser machine front view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Diesel Dispenser – Front View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Diesel Dispenser Machine 3 -->
+      <div class="g-card" data-category="dispensers" data-caption="Diesel Dispenser Machine – Full Unit" data-clabel="Fuel Dispensers">
+        <span class="g-pill dispensers"><i class="fa-solid fa-gas-pump"></i> Dispensers</span>
+        <img src="assest/video_page_images/photo51.webp" alt="Diesel dispenser machine full unit view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Fuel Dispensers</div><div class="g-ot">Diesel Dispenser Machine – Full Unit</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- ═══ UNLOADING SYSTEMS ═══ -->
+
+      <!-- Tanker Decantation System 1 -->
+      <div class="g-card" data-category="unloading" data-caption="Tanker Decantation System – ₹72,000/Piece" data-clabel="Unloading Systems">
+        <span class="g-pill unloading"><i class="fa-solid fa-truck-ramp-box"></i> Unloading</span>
+        <img src="assest/video_page_images/photo52.webp" alt="Tanker decantation system for chemical unloading" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Unloading Systems</div><div class="g-ot">Tanker Decantation System</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Tanker Decantation System 2 -->
+      <div class="g-card" data-category="unloading" data-caption="Tanker Decantation System – Close-up" data-clabel="Unloading Systems">
+        <span class="g-pill unloading"><i class="fa-solid fa-truck-ramp-box"></i> Unloading</span>
+        <img src="assest/video_page_images/photo53.webp" alt="Tanker decantation system close up view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Unloading Systems</div><div class="g-ot">Tanker Decantation – Close-up</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Tanker Decantation System 3 -->
+      <div class="g-card" data-category="unloading" data-caption="Tanker Decantation System – Wide" data-clabel="Unloading Systems">
+        <span class="g-pill unloading"><i class="fa-solid fa-truck-ramp-box"></i> Unloading</span>
+        <img src="assest/video_page_images/photo54.webp" alt="Tanker decantation system wide view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Unloading Systems</div><div class="g-ot">Tanker Decantation – Wide View</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Tanker Unloading System 1 -->
+      <div class="g-card" data-category="unloading" data-caption="Tanker Unloading System – ₹1.25 Lakh/Piece" data-clabel="Unloading Systems">
+        <span class="g-pill unloading"><i class="fa-solid fa-truck-ramp-box"></i> Unloading</span>
+        <img src="assest/video_page_images/photo55.webp" alt="Tanker unloading system complete unit" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Unloading Systems</div><div class="g-ot">Tanker Unloading System</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Tanker Unloading System 2 -->
+      <div class="g-card" data-category="unloading" data-caption="Tanker Unloading System – Site View" data-clabel="Unloading Systems">
+        <span class="g-pill unloading"><i class="fa-solid fa-truck-ramp-box"></i> Unloading</span>
+        <img src="assest/video_page_images/photo56.webp" alt="Tanker unloading system site installation view" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Unloading Systems</div><div class="g-ot">Tanker Unloading System – Site</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+      <!-- Fuel & Solvents Unloading System -->
+      <div class="g-card" data-category="unloading" data-caption="Fuel &amp; Solvents Unloading System – ₹68,500/Piece" data-clabel="Unloading Systems">
+        <span class="g-pill unloading"><i class="fa-solid fa-truck-ramp-box"></i> Unloading</span>
+        <img src="assest/video_page_images/photo57.webp" alt="Fuel and solvents unloading system" loading="lazy" />
+        <div class="g-overlay"><div class="g-oc">Unloading Systems</div><div class="g-ot">Fuel &amp; Solvents Unloading System</div></div>
+        <div class="g-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      </div>
+
+    </div><!-- /g-grid -->
+
+    <!-- No results -->
+    <div class="no-res" id="noResults">
+      <i class="fa-solid fa-images"></i>
+      <p>No images found in this category.</p>
     </div>
-  </section>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Image Lightbox">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery Image" />
-    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
-    <div class="lightbox-caption" id="lightboxCaption"></div>
-    <div class="lightbox-counter" id="lightboxCounter"></div>
+    <!-- Load more -->
+    <div class="lm-wrap reveal">
+      <button class="btn-lm" id="loadMoreBtn">
+        <i class="fa-solid fa-arrows-rotate"></i>
+        Load More Images
+      </button>
+    </div>
+
   </div>
+</section>
 
-   <!-- ════════════════════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════════════════════ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row g-5">
-        <!-- Brand -->
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-brand">
-            <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
-            <span class="brand-name">Fluid-Tech</span>
-          </div>
-          <p class="footer-desc">
-            Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.
-          </p>
-          <div class="footer-social">
-            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          </div>
-        </div>
 
-        <!-- Quick Links -->
-        <div class="col-lg-2 col-sm-6">
-          <h6 class="footer-title">Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="product.html">Products</a></li>
-            <li><a href="photo_gallery.html">Photo Gallery</a></li>
-            <li><a href="video_gallery.html">Video Gallery</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="enquiry.html">Enquiry</a></li>
-          </ul>
-        </div>
-
-        <!-- Products -->
-        <div class="col-lg-3 col-sm-6">
-          <h6 class="footer-title">Products</h6>
-          <ul class="footer-links">
-            <li><a href="products.html#pumps">Centrifugal Pumps</a></li>
-            <li><a href="products.html#pumps">Gear &amp; Diaphragm Pumps</a></li>
-            <li><a href="products.html#valves">Control &amp; Ball Valves</a></li>
-            <li><a href="products.html#instruments">Flow Meters</a></li>
-            <li><a href="products.html#instruments">Pressure Transmitters</a></li>
-            <li><a href="products.html#automation">PLC / SCADA Systems</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="col-lg-3 col-md-6">
-          <h6 class="footer-title">Contact Us</h6>
-          <div class="footer-contact-item">
-            <i class="fa-solid fa-location-dot"></i>
-            <span>Fluid-Tech, Near Bhosari MIDC,<br>Pune – 411026, Maharashtra, India</span>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fa-solid fa-phone"></i>
-            <a href="tel:+912012345678">+91 20 1234 5678</a>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fa-brands fa-whatsapp"></i>
-            <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fa-solid fa-envelope"></i>
-            <a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a>
-          </div>
-          <div class="footer-contact-item">
-            <i class="fa-solid fa-clock"></i>
-            <span>Mon–Sat: 9:00 AM – 6:30 PM</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="sitemap.xml">Sitemap</a>
-        </div>
-      </div>
+<!-- ═══════════════════════════════════════════════════
+     LIGHTBOX
+═══════════════════════════════════════════════════ -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <div class="lb-kbd"><i class="fa-solid fa-keyboard me-1"></i>Arrow keys to navigate · Esc to close</div>
+  <button class="lb-close" id="lbClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="lb-thumbs" id="lbThumbs"></div>
+  <div class="lb-info">
+    <div>
+      <div class="lb-cat" id="lbCat"></div>
+      <div class="lb-cap" id="lbCap"></div>
     </div>
-  </footer>
-
-   <!-- FLOATING BUTTONS -->
- <div class="floating-btns">
-  <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
-  <a href="contact.html" class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat" onclick="event.stopPropagation();"><i class="fa-brands fa-whatsapp"></i></a>
+    <div class="lb-cnt" id="lbCnt"></div>
+  </div>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-  <script>
-    // Gallery Filter
-    document.querySelectorAll('.gallery-filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.gallery-filter-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        const filter = tab.dataset.filter;
-        document.querySelectorAll('.gallery-item').forEach(item => {
-          if (filter === 'all' || item.dataset.category === filter) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
-        });
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER (unchanged)
+═══════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">
+          <img src="fluid_tech_logo-removebg-preview.png" alt="Fluid-Tech Logo" />
+          <span class="brand-name">Fluid-Tech</span>
+        </div>
+        <p class="footer-desc">Pune-based industrial process and fluid automation specialist. Supplying pumps, valves, instrumentation and automation systems since 2005.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-sm-6">
+        <h6 class="footer-title">Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="product.html">Products</a></li>
+          <li><a href="photo_gallery.html">Photo Gallery</a></li>
+          <li><a href="video_gallery.html">Video Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="enquiry.html">Enquiry</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <h6 class="footer-title">Products</h6>
+        <ul class="footer-links">
+          <li><a href="product.html">Flow Meters</a></li>
+          <li><a href="product.html">Oil Filling Machines</a></li>
+          <li><a href="product.html">Fuel Dispensers</a></li>
+          <li><a href="product.html">Tanker Unloading Systems</a></li>
+          <li><a href="product.html">Fuel Consumption Monitors</a></li>
+          <li><a href="product.html">PD Flow Meters</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-title">Contact Us</h6>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot"></i><span>Fluid-Tech, Shivane,<br>Pune – 411023, Maharashtra, India</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+912012345678">+91 20 1234 5678</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">+91 98765 43210</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:info@fluidtechpune.com">info@fluidtechpune.com</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-clock"></i><span>Mon–Sat: 9:00 AM – 6:30 PM</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Fluid-Tech, Pune. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-btns">
+  <button class="float-btn float-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-chevron-up"></i></button>
+  <a href="https://wa.me/919876543210" class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════
+   FLUID-TECH GALLERY SCRIPT
+   ─────────────────────────────────────────────────────
+   1. Category filter with live count badges
+   2. Premium lightbox with thumbnail strip
+   3. Keyboard + touch swipe navigation
+   4. Scroll reveal
+   5. Scroll-to-top button
+═══════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* ── 1. FILTER + COUNT BADGES ── */
+  const filterBtns = document.querySelectorAll('.fb');
+  const cards      = document.querySelectorAll('.g-card');
+  const noRes      = document.getElementById('noResults');
+
+  // Build category counts
+  const counts = { all: cards.length };
+  cards.forEach(c => {
+    const cat = c.dataset.category;
+    counts[cat] = (counts[cat] || 0) + 1;
+  });
+  // Write counts into badges
+  Object.entries(counts).forEach(([cat, n]) => {
+    const el = document.getElementById('cnt-' + cat);
+    if (el) el.textContent = n;
+  });
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      let visible = 0;
+
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        if (match) {
+          card.style.display = '';
+          card.classList.remove('flt-out');
+          card.classList.add('flt-in');
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
       });
+
+      noRes.classList.toggle('show', visible === 0);
     });
+  });
 
-    // Lightbox
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const lightbox     = document.getElementById('lightbox');
-    const lightboxImg  = document.getElementById('lightboxImg');
-    const lightboxCap  = document.getElementById('lightboxCaption');
-    const lightboxCnt  = document.getElementById('lightboxCounter');
-    let currentIdx = 0;
-    let visibleItems = [];
+  /* ── 2. LIGHTBOX ── */
+  const lightbox  = document.getElementById('lightbox');
+  const lbImg     = document.getElementById('lbImg');
+  const lbCap     = document.getElementById('lbCap');
+  const lbCat     = document.getElementById('lbCat');
+  const lbCnt     = document.getElementById('lbCnt');
+  const lbThumbs  = document.getElementById('lbThumbs');
+  const lbClose   = document.getElementById('lbClose');
+  const lbPrev    = document.getElementById('lbPrev');
+  const lbNext    = document.getElementById('lbNext');
 
-    function getVisibleItems() {
-      return Array.from(galleryItems).filter(el => el.style.display !== 'none');
+  let curIdx = 0;
+  let visible = [];
+
+  function getVisible() {
+    return Array.from(cards).filter(c => c.style.display !== 'none');
+  }
+
+  function buildThumbs() {
+    lbThumbs.innerHTML = '';
+    visible.forEach((card, i) => {
+      const img = card.querySelector('img');
+      const th  = document.createElement('div');
+      th.className = 'lb-th' + (i === curIdx ? ' active' : '');
+      th.innerHTML  = `<img src="${img.src}" alt="" loading="lazy">`;
+      th.addEventListener('click', () => { curIdx = i; updateLb(); });
+      lbThumbs.appendChild(th);
+    });
+  }
+
+  function syncThumb() {
+    const ths = lbThumbs.querySelectorAll('.lb-th');
+    ths.forEach((t, i) => t.classList.toggle('active', i === curIdx));
+    if (ths[curIdx]) ths[curIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  function updateLb() {
+    const card = visible[curIdx];
+    const img  = card.querySelector('img');
+
+    // Animate swap
+    lbImg.style.opacity = '0';
+    lbImg.style.transform = 'scale(0.94)';
+    setTimeout(() => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbImg.style.opacity   = '1';
+      lbImg.style.transform = 'scale(1)';
+      lbImg.style.transition = 'opacity .26s ease, transform .3s ease';
+    }, 120);
+
+    lbCap.textContent = card.dataset.caption || img.alt;
+    lbCat.textContent = card.dataset.clabel  || card.dataset.category;
+    lbCnt.innerHTML   = `<strong>${curIdx + 1}</strong> / ${visible.length}`;
+    syncThumb();
+  }
+
+  function openLb(idx) {
+    visible = getVisible();
+    curIdx  = idx;
+    buildThumbs();
+    updateLb();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      visible = getVisible();
+      const idx = visible.indexOf(card);
+      openLb(idx >= 0 ? idx : 0);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLb);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+
+  lbPrev.addEventListener('click', () => {
+    curIdx = (curIdx - 1 + visible.length) % visible.length;
+    updateLb();
+  });
+  lbNext.addEventListener('click', () => {
+    curIdx = (curIdx + 1) % visible.length;
+    updateLb();
+  });
+
+  /* ── 3. KEYBOARD ── */
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    switch (e.key) {
+      case 'Escape':     closeLb(); break;
+      case 'ArrowLeft':  curIdx = (curIdx - 1 + visible.length) % visible.length; updateLb(); break;
+      case 'ArrowRight': curIdx = (curIdx + 1) % visible.length; updateLb(); break;
     }
+  });
 
-    function openLightbox(idx) {
-      visibleItems = getVisibleItems();
-      currentIdx = idx;
-      updateLightbox();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  /* ── 4. TOUCH SWIPE ── */
+  let txStart = 0;
+  lightbox.addEventListener('touchstart', e => { txStart = e.changedTouches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - txStart;
+    if (Math.abs(dx) > 48) {
+      curIdx = dx < 0
+        ? (curIdx + 1) % visible.length
+        : (curIdx - 1 + visible.length) % visible.length;
+      updateLb();
     }
+  }, { passive: true });
 
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+  /* ── 5. SCROLL REVEAL ── */
+  const reveals = document.querySelectorAll('.reveal');
+  new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }),
+    { threshold: 0.10 }
+  ).observe
+    ? reveals.forEach(el => new IntersectionObserver(
+        ([e]) => { if (e.isIntersecting) { el.classList.add('visible'); } },
+        { threshold: 0.10 }
+      ).observe(el))
+    : reveals.forEach(el => el.classList.add('visible'));
 
-    function updateLightbox() {
-      const item = visibleItems[currentIdx];
-      lightboxImg.src = item.querySelector('img').src;
-      lightboxImg.alt = item.querySelector('img').alt;
-      lightboxCap.textContent = item.querySelector('.gallery-item-caption')?.textContent || '';
-      lightboxCnt.textContent = (currentIdx + 1) + ' / ' + visibleItems.length;
-    }
+  /* ── 6. LOAD MORE stub ── */
+  document.getElementById('loadMoreBtn')?.addEventListener('click', function () {
+    this.innerHTML = '<i class="fa-solid fa-circle-check"></i> All images loaded';
+    this.disabled = true;
+    this.style.opacity = '0.5';
+    this.style.cursor  = 'default';
+  });
 
-    galleryItems.forEach((item, i) => {
-      item.addEventListener('click', () => {
-        visibleItems = getVisibleItems();
-        const vIdx = visibleItems.indexOf(item);
-        openLightbox(vIdx >= 0 ? vIdx : 0);
-      });
-    });
+  /* ── 7. SCROLL TO TOP ── */
+  const sTopBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    if (sTopBtn) sTopBtn.style.opacity = window.scrollY > 380 ? '1' : '0';
+  }, { passive: true });
+  sTopBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-    document.getElementById('lightboxPrev').addEventListener('click', () => {
-      currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
-      updateLightbox();
-    });
-    document.getElementById('lightboxNext').addEventListener('click', () => {
-      currentIdx = (currentIdx + 1) % visibleItems.length;
-      updateLightbox();
-    });
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', e => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') { currentIdx = (currentIdx-1+visibleItems.length)%visibleItems.length; updateLightbox(); }
-      if (e.key === 'ArrowRight') { currentIdx = (currentIdx+1)%visibleItems.length; updateLightbox(); }
-    });
-  </script>
+}());
+</script>
 </body>
 </html>
+
